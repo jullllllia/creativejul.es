@@ -4,7 +4,7 @@
 .mao { font-family: var(--f-mao); font-weight: 400; letter-spacing: 0.12em; color: var(--papel); text-transform: uppercase; filter: url(#giz-fino); }
 .ct-topo { position: relative; padding: 88px var(--margem) 64px; }
 .ct-h1 { margin-top: 28px; font-size: clamp(56px, 8.9vw, 128px); line-height: 0.95; }
-.ct-intro { max-width: 540px; margin: 28px 0 0; font-size: 16px; line-height: 1.6; }
+.ct-intro { max-width: none; margin: 28px 0 0; font-size: 16px; line-height: 1.6; }
 .ct-nota { position: absolute; right: 8%; top: 284px; width: 300px; height: 136px; pointer-events: none; }
 .ct-nota svg { position: absolute; left: 0; top: 0; width: 110px; height: 102px; overflow: visible; transform: rotate(20deg) scaleX(-1); filter: url(#giz-fino); }
 .ct-nota p { position: absolute; left: 56px; top: 34px; margin: 0; font-size: 23px; transform: rotate(-5deg); white-space: nowrap; }
