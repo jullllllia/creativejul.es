@@ -11,9 +11,16 @@
   font-family: var(--f-mono); color: var(--papel); overflow: hidden; cursor: pointer;
 }
 .ab-mostrar body { overflow: hidden; }
-/* linhas de monitor antigo por cima */
+/* mesmo fundo do site: granulação de filme (grao.png) ... */
+.abertura::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: url('../img/grao.png') repeat; mix-blend-mode: overlay; opacity: 0.4; }
+/* ... + pontinhos + linhas de monitor antigo por cima */
 .abertura::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: repeating-linear-gradient(to bottom, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 3px); }
+  background-image: radial-gradient(rgba(237,235,221,0.05) 0.6px, transparent 0.9px), radial-gradient(rgba(0,0,0,0.4) 0.9px, transparent 1.2px),
+    repeating-linear-gradient(to bottom, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 3px);
+  background-size: 2px 2px, 4px 3px, auto; }
+.abertura > * { position: relative; z-index: 1; }
+.abertura > .ab-topo, .abertura > .ab-entrar, .abertura > .ab-dom { position: absolute; }
 .abertura.saindo { animation: abSai .45s ease-in forwards; }
 @keyframes abSai { to { opacity: 0; transform: scale(1.02); } }
 
@@ -39,7 +46,6 @@
 
 .ab-entrar { position: absolute; bottom: 44px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 20px; font: inherit; font-size: 12px; letter-spacing: 0.12em; color: var(--papel); background: transparent; border: 1px solid var(--musgo); cursor: pointer; }
 .ab-entrar:hover { border-color: var(--ouro); color: var(--ouro); }
-.ab-assin { position: absolute; left: 40px; bottom: 32px; font-family: 'Bodoni Moda', 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 20px; }
 .ab-dom { position: absolute; right: 40px; bottom: 36px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); }
 
 @media (max-width: 700px) {
@@ -49,7 +55,6 @@
   .ab-carga { margin-top: 40px; }
   .ab-linhas { font-size: 10.5px; }
   .ab-entrar { left: 16px; right: 16px; bottom: 72px; justify-content: center; font-size: 11px; }
-  .ab-assin { left: 16px; bottom: 22px; }
   .ab-dom { right: 16px; bottom: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {

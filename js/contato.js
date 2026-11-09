@@ -24,8 +24,8 @@
   var PRAZOS = { pt: ['Sem pressa', 'Este mês', 'Urgente'], en: ['No rush', 'This month', 'Urgent'] };
   var CANAIS = {
     email: { icone: '@', link: null,
-      pt: { nome: 'E-mail', porque: 'Pra projetos, o e-mail é o melhor: dá pra mandar referências e briefing, e eu respondo com calma e com orçamento.', acao: 'Abrir meu e-mail', obs: 'Se o seu e-mail não abrir sozinho, copie a mensagem e envie para ' + EMAIL + '.' },
-      en: { nome: 'Email', porque: 'For projects, email is best: you can send references and a brief, and I reply calmly, with a quote.', acao: 'Open my email', obs: 'If your email app doesn’t open, copy the message and send it to ' + EMAIL + '.' } },
+      pt: { nome: 'E-mail', porque: 'Pra projetos, o e-mail é o melhor: dá pra mandar referências e briefing, e eu respondo com calma e com orçamento.', acao: 'Enviar e-mail', obs: 'O botão abre o Gmail já com tudo preenchido. Se preferir, copie a mensagem e envie para ' + EMAIL + '.' },
+      en: { nome: 'Email', porque: 'For projects, email is best: you can send references and a brief, and I reply calmly, with a quote.', acao: 'Send email', obs: 'The button opens Gmail with everything filled in. If you prefer, copy the message and send it to ' + EMAIL + '.' } },
     linkedin: { icone: 'in', link: 'https://www.linkedin.com/in/julliaht/',
       pt: { nome: 'LinkedIn', porque: 'Pra vagas e propostas, o LinkedIn é o melhor lugar: lá está meu histórico completo e eu respondo recrutadores por mensagem.', acao: 'Abrir meu LinkedIn', obs: 'Copie a mensagem e cole na conversa do LinkedIn.' },
       en: { nome: 'LinkedIn', porque: 'For openings and offers, LinkedIn is the best place: my full history is there and I answer recruiters by message.', acao: 'Open my LinkedIn', obs: 'Copy the message and paste it into the LinkedIn chat.' } },
@@ -86,7 +86,14 @@
         $('.ct-msg').textContent = m.completa;
         var ir = $('.ct-ir');
         ir.textContent = c[l].acao;
-        ir.href = c.link || ('mailto:' + EMAIL + '?subject=' + encodeURIComponent(m.assunto) + '&body=' + encodeURIComponent(m.corpo));
+        var su = encodeURIComponent(m.assunto), bo = encodeURIComponent(m.corpo);
+        // e-mail: o botão principal abre o Gmail no navegador (funciona mesmo sem app de e-mail instalado)
+        ir.href = c.link || ('https://mail.google.com/mail/?view=cm&fs=1&to=' + EMAIL + '&su=' + su + '&body=' + bo);
+        ir.target = '_blank';
+        var outros = $('.ct-outros');
+        outros.hidden = !!c.link;
+        $('.ct-outlook').href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + EMAIL + '&subject=' + su + '&body=' + bo;
+        $('.ct-app').href = 'mailto:' + EMAIL + '?subject=' + su + '&body=' + bo;
         $('.ct-obs').textContent = c[l].obs;
       }
       $('.ct-copiar').textContent = st.copiado ? t.copiado : t.copiar;
@@ -115,13 +122,26 @@
       else if (!(st.etapa === 1 && st.op === null)) st.etapa++;
       desenhar(true);
     });
+    // Copiar: tenta o jeito moderno (navigator.clipboard). Ele só existe em sites com
+    // https (cadeado); se não der, usa o jeito antigo: um campo de texto escondido + "copiar".
     $('.ct-copiar').addEventListener('click', function () {
       var texto = textoMensagem().completa;
-      function ok() { st.copiado = true; desenhar(false); }
-      try {
-        navigator.clipboard.writeText(texto).then(ok, function () { selecionar(); });
-      } catch (e) { selecionar(); }
-      function selecionar() { var r = document.createRange(); r.selectNodeContents($('.ct-msg')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      function ok() { st.copiado = true; desenhar(false); setTimeout(function () { st.copiado = false; desenhar(false); }, 2500); }
+      function jeitoAntigo() {
+        var campo = document.createElement('textarea');
+        campo.value = texto;
+        campo.setAttribute('readonly', '');
+        campo.style.position = 'fixed'; campo.style.top = '0'; campo.style.opacity = '0';
+        document.body.appendChild(campo);
+        campo.select(); campo.setSelectionRange(0, texto.length);
+        var deu = false;
+        try { deu = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(campo);
+        if (deu) ok();
+        else { var r = document.createRange(); r.selectNodeContents($('.ct-msg')); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, jeitoAntigo);
+      else jeitoAntigo();
     });
     document.addEventListener('idioma', function () { desenhar(false); });
     desenhar(false);

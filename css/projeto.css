@@ -49,3 +49,17 @@
   .outros { grid-template-columns: 1fr; gap: 16px; padding-top: 64px; }
   .outros a.proximo { align-items: flex-start; text-align: left; }
 }
+
+/* Wyoming: botão do site ao vivo, barra de endereço e separadores entre as páginas */
+.ao-vivo { align-self: flex-start; min-height: 40px; gap: 10px; padding: 0 18px; }
+.ao-vivo-url { font-family: var(--f-mono); font-weight: 400; color: #4A4430; }
+.endereco { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 4px 0 8px; font-family: var(--f-janela); font-size: 12px; color: #171C10; }
+.endereco-url { flex: 1; min-width: 0; height: 24px; display: flex; align-items: center; padding: 0 8px; overflow: hidden; white-space: nowrap; font-family: var(--f-mono); background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; }
+.endereco .b98 { min-height: 26px; font-weight: 700; }
+.separador { display: flex; align-items: center; gap: 14px; height: 64px; padding: 0 20px; background: var(--noite-2); border-top: 1px solid var(--musgo); border-bottom: 1px solid var(--musgo); font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--papel); }
+.separador span:first-child { width: 9px; height: 9px; background: var(--ouro); flex-shrink: 0; }
+@media (max-width: 700px) {
+  .endereco > span:first-child { display: none; }
+  .separador { height: 48px; font-size: 11px; padding: 0 14px; }
+  .ao-vivo { flex-wrap: wrap; height: auto; padding: 8px 16px; }
+}

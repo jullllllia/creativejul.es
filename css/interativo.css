@@ -6,15 +6,7 @@
    4. Social media: perfis e post aberto
    ===================================================================== */
 
-/* ---------- 1. Botão 98 ---------- */
-.b98 {
-  min-height: 32px; padding: 0 14px; border: 0; cursor: pointer;
-  font-family: var(--f-janela); font-size: 13px; color: #171C10; background: var(--bege);
-  box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468;
-}
-.b98:hover { color: #171C10; background: #E2DBC2; }
-.b98:active, .b98[aria-pressed="true"] { background: var(--musgo-escuro); color: #FFF; box-shadow: inset 1px 1px 0 #171C10, inset -1px -1px 0 var(--broto); }
-.b98:disabled { opacity: 0.45; cursor: default; }
+/* ---------- 1. Botão 98: agora fica no estilo.css ---------- */
 
 /* ---------- 2. BBG: antes / depois ---------- */
 .comparar { width: min(100% - 2 * var(--margem), 1200px); margin: 0 auto; }
@@ -54,17 +46,32 @@
 .ed-mesa { position: relative; padding: clamp(12px, 3vw, 36px); background: #2A2F1E; }
 .ed-mesa:focus-visible { outline: 2px solid var(--ouro); outline-offset: -4px; }
 .ed-vista { position: relative; aspect-ratio: 1400 / 875; max-width: 1120px; margin: 0 auto; perspective: 2200px; }
-.ed-img { position: absolute; top: 0; height: 100%; width: 100%; left: 0; object-fit: contain; background: #FFF; box-shadow: 0 18px 40px rgba(0,0,0,0.5); }
-.ed-img.so-dir { left: 50%; width: 50%; }
-.ed-img.so-esq { left: 0; width: 50%; }
-/* dobra central quando a revista está aberta */
-.ed-vista.aberta::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 60px; margin-left: -30px; pointer-events: none;
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0) 100%); }
-.ed-img.vira-frente { animation: edFrente .55s cubic-bezier(0.45, 0.05, 0.3, 1) both; transform-origin: 0 50%; }
-.ed-img.vira-tras { animation: edTras .55s cubic-bezier(0.45, 0.05, 0.3, 1) both; transform-origin: 100% 50%; }
-@keyframes edFrente { from { opacity: 0; transform: rotateY(-14deg) translateX(3%); } to { opacity: 1; transform: none; } }
-@keyframes edTras { from { opacity: 0; transform: rotateY(14deg) translateX(-3%); } to { opacity: 1; transform: none; } }
-.ed-toque { position: absolute; top: 0; bottom: 0; width: 50%; border: 0; background: transparent; cursor: pointer; }
+/* cada metade da revista (esquerda / direita) */
+.ed-pag, .ed-resto, .ed-folha { position: absolute; top: 0; bottom: 0; width: 50%; }
+.ed-pag.esq, .ed-resto.esq, .ed-folha.esq { left: 0; }
+.ed-pag.dir, .ed-resto.dir, .ed-folha.dir { left: 50%; }
+.ed-pag, .ed-resto, .ed-face { overflow: hidden; }
+.cheia { background: #FFF; }
+.ed-pag.esq.cheia { box-shadow: -14px 18px 40px rgba(0,0,0,0.5); }
+.ed-pag.dir.cheia { box-shadow: 14px 18px 40px rgba(0,0,0,0.5); }
+.ed-vista img { display: block; height: 100%; width: 100%; object-fit: cover; user-select: none; }
+/* páginas duplas: a imagem tem as duas páginas; mostramos só a metade da caixa */
+.ed-vista img.meia { width: 200%; max-width: none; }
+.ed-vista img.meia.dir { margin-left: -100%; }
+.ed-resto { z-index: 2; }
+/* a folha que vira: duas faces (frente e verso) coladas costas com costas */
+.ed-folha { z-index: 3; transform-style: preserve-3d; will-change: transform; }
+.ed-folha.avanca { transform-origin: 0 50%; animation: edAvanca .9s cubic-bezier(0.45, 0.05, 0.3, 1) forwards; }
+.ed-folha.volta { transform-origin: 100% 50%; animation: edVolta .9s cubic-bezier(0.45, 0.05, 0.3, 1) forwards; }
+.ed-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.ed-face.verso { transform: rotateY(180deg); }
+/* sombra que escurece a folha no meio do giro */
+.ed-face::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, rgba(0,0,0,0.25), rgba(0,0,0,0) 40%); opacity: 0; animation: edSombra .9s ease-in-out forwards; }
+.ed-folha.volta .ed-face::after { background: linear-gradient(to left, rgba(0,0,0,0.25), rgba(0,0,0,0) 40%); }
+@keyframes edAvanca { from { transform: rotateY(0deg); } to { transform: rotateY(-180deg); } }
+@keyframes edVolta { from { transform: rotateY(0deg); } to { transform: rotateY(180deg); } }
+@keyframes edSombra { 50% { opacity: 1; } }
+.ed-toque { z-index: 4; position: absolute; top: 0; bottom: 0; width: 50%; border: 0; background: transparent; cursor: pointer; }
 .ed-toque.esq { left: 0; cursor: w-resize; }
 .ed-toque.dir { right: 0; cursor: e-resize; }
 .ed-controles { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 10px; font-family: var(--f-janela); font-size: 13px; }
@@ -136,4 +143,4 @@
   .sm-story { width: 84px; }
   .sm-anel img { width: 60px; height: 60px; }
 }
-@media (prefers-reduced-motion: reduce) { .ed-img, .sm-img, .entra { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .ed-folha, .sm-img, .entra { animation: none !important; } }

@@ -86,6 +86,10 @@ a:hover { color: var(--ouro); }
 .menu a { text-decoration: none; padding-bottom: 4px; }
 .menu a[aria-current="page"] { border-bottom: 1px solid var(--ouro); }
 .menu .n { color: var(--musgo); }
+/* casinha estilo Windows 98: volta para a página inicial */
+.menu .casa { display: inline-flex; align-items: center; padding-bottom: 4px; }
+.menu .casa svg { display: block; transition: transform .15s; }
+.menu .casa:hover svg { transform: translateY(-2px); }
 .cab-dir { display: flex; align-items: center; gap: 28px; color: var(--broto); }
 .idioma { display: flex; gap: 6px; align-items: center; }
 .idioma button { font: inherit; letter-spacing: inherit; background: none; border: 0; padding: 4px 2px; color: var(--broto); cursor: pointer; }
@@ -120,6 +124,25 @@ a:hover { color: var(--ouro); }
   transition: transform .15s;
 }
 .botao:hover { color: #0B0F07; transform: rotate(-1deg) scale(1.03); }
+
+/* Botão estilo Windows 98 (usado em várias páginas) */
+.b98 {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 32px; padding: 0 14px; border: 0; cursor: pointer; text-decoration: none;
+  font-family: var(--f-janela); font-size: 13px; color: #171C10; background: var(--bege);
+  box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468;
+}
+a.b98, a.b98:visited { color: #171C10; }
+.b98:hover { color: #171C10; background: #E2DBC2; }
+/* selecionado / apertado: fundo musgo e letra branca */
+.b98:active, .b98[aria-pressed="true"], .b98[aria-checked="true"] { background: var(--musgo-escuro); color: #FFF; box-shadow: inset 1px 1px 0 #171C10, inset -1px -1px 0 var(--broto); }
+.b98[aria-pressed="true"]:hover, .b98[aria-checked="true"]:hover { background: #4A5529; color: #FFF; }
+.b98:disabled { opacity: 0.45; cursor: default; }
+.b98.forte { font-weight: 700; box-shadow: 0 0 0 1px #171C10, inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
+
+/* Botão "Iniciar conversa" nos rodapés "Bora conversar?" */
+.ir-contato { align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 22px; background: var(--ouro); color: #0B0F07; text-decoration: none; font-family: var(--f-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; transition: transform .15s; }
+.ir-contato:hover { color: #0B0F07; transform: rotate(-1deg) scale(1.03); }
 
 /* Cabeçalho de seção: "[ 01 ] TEXTO" */
 .secao-topo { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; border-top: 1px solid var(--musgo); }

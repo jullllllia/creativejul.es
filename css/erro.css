@@ -16,9 +16,8 @@ body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: col
 .erro p { margin: 0; font-size: 13px; line-height: 1.6; }
 .erro-det { margin: 4px 22px 10px; padding: 10px 12px; font-family: var(--f-mono); font-size: 12px; line-height: 1.6; white-space: pre-wrap; background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; }
 .erro-botoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding: 6px 18px 18px; }
-.b98 { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; min-width: 120px; padding: 0 16px; border: 0; cursor: pointer; text-decoration: none; font-family: var(--f-janela); font-size: 13px; color: #171C10; background: var(--bege); box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
-.b98:hover { color: #171C10; background: #E2DBC2; }
-.b98.forte { font-weight: 700; min-width: 170px; box-shadow: 0 0 0 1px #171C10, inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
+.erro-botoes .b98 { min-width: 120px; padding: 0 16px; }
+.erro-botoes .b98.forte { min-width: 170px; }
 .tarefas { position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 4px; padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--bege); font-family: var(--f-janela); font-size: 13px; color: #171C10; box-shadow: inset 0 1px 0 #FFFBEA, 0 -1px 0 #8C8468; }
 .iniciar { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 8px; font-weight: 700; color: #171C10; text-decoration: none; box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
 .iniciar:hover { color: #171C10; }

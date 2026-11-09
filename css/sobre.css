@@ -76,7 +76,9 @@
 .conq-corpo b { display: block; line-height: 1.35; }
 .conq-corpo small { display: block; margin-top: 8px; font-size: 12px; color: var(--musgo-escuro); }
 .ok { display: flex; justify-content: flex-end; padding: 0 12px 12px; }
-.ok span { min-width: 76px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, 0 0 0 1px #171C10; }
+.ok a { min-width: 76px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #171C10; text-decoration: none; box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, 0 0 0 1px #171C10; }
+.ok a:hover { color: #171C10; background: #E2DBC2; }
+.ok a:active { box-shadow: inset 1px 1px 0 #2C2A1E, inset -1px -1px 0 #FFFBEA, 0 0 0 1px #171C10; }
 
 /* ---------- A marca ---------- */
 .marca { padding: 96px var(--margem) 96px; }
