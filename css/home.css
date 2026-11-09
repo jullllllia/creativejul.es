@@ -121,9 +121,12 @@
   /* explorador vira coluna: pastas em fila rolável, depois o painel, depois os arquivos */
   .ex-corpo { flex-direction: column; height: auto; }
   .ex-nav { width: auto; padding: 8px; }
-  .ex-raiz { display: none; }
-  .ex-pastas { flex-direction: row; overflow-x: auto; gap: 4px; padding-bottom: 4px; }
-  .ex-pasta, .ex-pasta.nivel-1 { margin-left: 0; white-space: nowrap; flex-shrink: 0; }
+  /* celular: some a coluna de pastas; o campo "Endereço" vira um menu suspenso com todas as pastas
+     (cabe qualquer quantidade) e dentro de cada pasta dá pra entrar nas subpastas e voltar com ".." */
+  .ex-nav { display: none; }
+  .endereco .campo { display: none; }
+  .endereco .ex-combo { display: flex; }
+  .ex-arquivos .ex-acima { display: list-item; }
   .ex-direita { flex-direction: column; }
   .ex-info { width: auto; border-right: 0; border-bottom: 1px solid var(--bege); padding: 20px; }
   .ex-titulo { font-size: 38px; max-width: none; }
@@ -156,3 +159,17 @@
 .ex-aqui { margin-left: 6px; color: #5E6B33; font-weight: 700; }
 .ex-linha:hover .ex-aqui, .ex-linha:focus-visible .ex-aqui { color: inherit; }
 .como .linha .rot .par { color: var(--papel); }  /* parênteses em branco */
+/* quebra de linha que só vale no computador; no celular o texto corre normal */
+@media (max-width: 1100px) { .so-desktop { display: none; } }
+
+/* menu suspenso de pastas (só no celular) — campo afundado + botão de seta estilo Windows 98 */
+.ex-combo { display: none; position: relative; flex: 1; min-width: 0; height: 30px; }
+.ex-select { -webkit-appearance: none; appearance: none; width: 100%; height: 100%; margin: 0; padding: 0 40px 0 8px; border: 0; border-radius: 0;
+  font-family: var(--f-janela); font-size: 14px; color: #171C10; background: #FFFDF4; cursor: pointer;
+  box-shadow: inset 1px 1px 0 #8C8468, inset 2px 2px 0 #4A4430, inset -1px -1px 0 #FFFBEA; }
+.ex-select:focus-visible { outline: 2px solid var(--musgo); outline-offset: 1px; }
+.ex-combo-seta { position: absolute; right: 2px; top: 2px; bottom: 2px; width: 26px; pointer-events: none; background: var(--bege);
+  box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
+.ex-combo-seta::after { content: ""; position: absolute; left: 50%; top: 50%; margin: -2px 0 0 -4px; border: 4px solid transparent; border-top: 5px solid #171C10; border-bottom: 0; }
+.ex-acima { display: none; }
+.ex-acima small { font-size: 11px; color: #5A5440; }

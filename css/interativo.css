@@ -148,3 +148,4 @@
 /* link "Ver perfil completo" de cada perfil (mesmo estilo das redes do rodapé) */
 .sm-insta { align-self: flex-start; font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--papel); text-underline-offset: 6px; }
 .sm-insta[hidden] { display: none; }
+.ed-pag.espera { visibility: hidden; }

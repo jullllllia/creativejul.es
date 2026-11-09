@@ -31,6 +31,7 @@
       itens: [
         { nome: 'medicinas-do-tempo.case', tipo: { pt: 'Branding', en: 'Branding' }, ano: '2026', link: 'projetos/medicinas-do-tempo.html' },
         { nome: 'bbg_language-solutions.case', tipo: { pt: 'Identidade visual', en: 'Visual identity' }, ano: '2024 · 2026', link: 'projetos/bbg.html' },
+        { nome: 'thaism_o.case', tipo: { pt: 'ID visual · streampack', en: 'Visual ID · streampack' }, ano: '2026', link: 'projetos/thaism_o.html' },
         { nome: 'paantv_.case', tipo: { pt: 'Ilustração · streampack', en: 'Illustration · streampack' }, ano: '2025', link: 'projetos/paantv.html' },
         { nome: 'sratpm.case', tipo: { pt: 'ID visual · streampack', en: 'Visual ID · streampack' }, ano: '2023', link: 'projetos/sratpm.html' },
         { nome: 'souneite.case', tipo: { pt: 'ID visual · streampack', en: 'Visual ID · streampack' }, ano: '2023', link: 'projetos/souneite.html' },
@@ -76,12 +77,29 @@
         (u.nivel === 0 ? ICONE_DISCO : ICONE_PASTA) + '<span>' + esc(nome) + '</span></button>';
     }).join('');
 
+    // 1b. celular: a lista de pastas vira um menu suspenso no campo "Endereço"
+    var sel = raiz.querySelector('.ex-select');
+    if (sel) {
+      sel.innerHTML = UNIDADES.map(function (u) {
+        var nome = u.rotulo ? t(u.rotulo) : u.caminho.split('\\').pop();
+        var recuo = u.nivel ? '\u00A0\u00A0\u00A0\u00A0└ ' : '';
+        return '<option value="' + esc(u.caminho) + '"' + (u.caminho === aberta ? ' selected' : '') + '>' + recuo + esc(nome) + '</option>';
+      }).join('');
+    }
+
     // 2. painel da pasta aberta
     raiz.querySelector('.ex-titulo').textContent = t(atual.titulo);
     raiz.querySelector('.ex-desc').textContent = t(atual.desc);
 
     // 3. arquivos
-    raiz.querySelector('.ex-arquivos').innerHTML = atual.itens.map(function (it) {
+    // dentro de uma subpasta: primeira linha "voltar" (pasta acima), como no Windows
+    var acima = '';
+    if (atual.nivel > 0) {
+      var pai = atual.caminho.split('\\')[0];
+      acima = '<li class="ex-acima"><button type="button" class="ex-linha ativa" data-caminho="' + esc(pai) + '"><span class="ex-nome">' + ICONE_PASTA +
+        '<span>.. <small>' + (window.JULES_IDIOMA === 'en' ? '(back to ' : '(voltar para ') + esc(pai) + ')</small></span></span><span class="ex-tipo"></span><span class="ex-ano"></span></button></li>';
+    }
+    raiz.querySelector('.ex-arquivos').innerHTML = acima + atual.itens.map(function (it) {
       var icone = it.pasta ? ICONE_PASTA : (it.estrela ? ICONE_ESTRELA : ICONE_ARQ);
       var aqui = it.aqui ? ' <span class="ex-aqui">' + esc(t(it.aqui)) + '</span>' : '';
       var conteudo = '<span class="ex-nome">' + icone + '<span>' + esc(it.nome) + aqui + '</span></span>' +
@@ -117,6 +135,11 @@
     if (secao) secao.scrollIntoView();
   }
 
+  document.addEventListener('change', function (e) {
+    if (!e.target.classList || !e.target.classList.contains('ex-select')) return;
+    aberta = e.target.value;
+    desenhar();
+  });
   document.addEventListener('idioma', desenhar);
   document.addEventListener('DOMContentLoaded', function () { desenhar(); abrirPeloEndereco(); });
   window.addEventListener('hashchange', abrirPeloEndereco);

@@ -11,7 +11,7 @@
 .proj-grid { display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 72px; margin-top: 48px; }
 .proj-texto { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
 .categoria { margin: 0; font-size: 12px; letter-spacing: 0.1em; color: var(--ouro); }
-.proj-texto h1 { font-size: clamp(56px, 8.9vw, 128px); line-height: 0.9; overflow-wrap: anywhere; }
+.proj-texto h1 { font-size: clamp(56px, 8.2vw, 118px); line-height: 0.9; overflow-wrap: break-word; }
 .subtitulo { margin: 0; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 40px; line-height: 1.1; color: var(--broto); filter: blur(0.9px); }
 .proj-texto .resumo { margin: 8px 0 0; max-width: 600px; font-size: 15px; line-height: 1.7; color: var(--papel-2); }
 .resumo em { font-style: normal; color: var(--broto); }

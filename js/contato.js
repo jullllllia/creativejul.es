@@ -85,7 +85,9 @@
         var projeto = OPCOES[st.op].canal === 'email';
         // projetos: ícones do WhatsApp + envelope; LinkedIn/Discord: "in" / "#"
         document.querySelectorAll('.ct-icone-zap').forEach(function (el) { el.hidden = !projeto; });
-        $('.ct-icone-txt').textContent = projeto ? '' : c.icone;
+        // LinkedIn e Discord: mostra só o ícone (em pixel) do canal recomendado
+        document.querySelectorAll('.ct-icone-canal').forEach(function (el) { el.hidden = el.getAttribute('data-canal') !== OPCOES[st.op].canal; });
+        $('.ct-icone-txt').textContent = '';
         $('.ct-canal-nome').textContent = projeto ? c[l].nomeZap : c[l].nome;
         $('.ct-porque').textContent = projeto ? c[l].porqueZap : c[l].porque;
         var su = encodeURIComponent(m.assunto), bo = encodeURIComponent(m.corpo);

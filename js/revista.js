@@ -62,6 +62,7 @@
     function limparVirada() {
       clearTimeout(timer);
       vista.querySelectorAll('.ed-resto, .ed-folha').forEach(function (el) { el.remove(); });
+      pagE.classList.remove('espera'); pagD.classList.remove('espera');
     }
 
     function base(n) {
@@ -86,6 +87,9 @@
       folha.innerHTML = '<div class="ed-face frente"></div><div class="ed-face verso"></div>';
       preencher(folha.children[0], de, frente ? 'r' : 'l', false);
       preencher(folha.children[1], para, frente ? 'l' : 'r', false);
+      // a página onde a folha vai "cair" só aparece quando a virada termina
+      // (sem isso, na capa e na contracapa a página nova aparecia antes da animação)
+      (frente ? pagE : pagD).classList.add('espera');
       vista.appendChild(resto);
       vista.appendChild(folha);
       timer = setTimeout(limparVirada, DURACAO + 30);

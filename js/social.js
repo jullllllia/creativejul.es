@@ -84,6 +84,7 @@
     // abrir um perfil direto pelo endereço, ex.: social-media.html#dorivalbar
     function peloEndereco() {
       var alvo = decodeURIComponent(location.hash.slice(1));
+      if (!alvo) return false; // sem endereço: começa pelo primeiro perfil (São Paulo FC)
       for (var i = 0; i < P.length; i++) if (P[i].usuario === alvo || P[i].insta === alvo) { c = i; f = 0; return true; }
       return false;
     }

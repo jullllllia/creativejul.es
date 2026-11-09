@@ -189,3 +189,7 @@ a.b98, a.b98:visited { color: #171C10; }
   .contato .dir { align-items: flex-start; }
   .glifo-g { font-size: 6px; line-height: 7px; }
 }
+/* setinhas desenhadas em pixel (no lugar de ◀ ▶, que o iPhone transforma em emoji) */
+.seta-px { display: inline-block; flex-shrink: 0; }
+.b98 .seta-px { margin: 0 2px; }
+.b98:has(.seta-px) { gap: 8px; }

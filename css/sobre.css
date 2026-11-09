@@ -111,7 +111,17 @@
 
 /* ---------- TELAS MENORES ---------- */
 @media (max-width: 1100px) {
-  .sobre-topo { grid-template-columns: 1fr; padding-top: 64px; }
+  .sobre-topo { grid-template-columns: 1fr; padding-top: 64px; gap: 32px; }
+  /* tela estreita: a foto entra logo depois do "Oi, eu sou a jullia" e antes dos textos
+     de design/code/play; os apps continuam no fim. "display: contents" desfaz as duas colunas
+     e "order" escolhe a ordem de cada pedaço. */
+  .sobre-texto, .sobre-topo > div:not(.sobre-texto) { display: contents; }
+  .sobre-texto > .rotulo { order: 1; }
+  .sobre-texto > h1 { order: 2; }
+  .sobre-texto > .cidade { order: 3; }
+  .sobre-foto { order: 4; }
+  .bio { order: 5; }
+  .apps { order: 6; margin-top: 8px; }
   .nota-essa, .seta-essa, .bolinha { display: none; }
   .sobre-foto { max-width: 460px; }
   .experiencia li { grid-template-columns: 140px minmax(0, 1fr) 200px; }
@@ -138,4 +148,12 @@
   .apps ul { grid-template-columns: repeat(3, 72px); }
   .apps img { width: 72px; height: 72px; }
   .contato.simples { align-items: flex-start; }
+}
+/* celular: "[BELO HORIZONTE]" é o nome de cidade mais longo; diminui só ele para caber ao lado da bandeira */
+@media (max-width: 800px) {
+  .empresa .local-longo { font-size: 9.5px; letter-spacing: 0; white-space: nowrap; }
+}
+@media (max-width: 380px) {
+  .empresa:has(.local-longo) { gap: 8px; }
+  .empresa .local-longo { font-size: 8.5px; margin-left: 0; }
 }
