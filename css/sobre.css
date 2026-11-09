@@ -91,9 +91,12 @@
 .marca-logo .cores { position: absolute; right: 14px; bottom: 14px; display: flex; gap: 4px; }
 .marca-logo .cores span { width: 14px; height: 14px; }
 .marca-texto { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
-.marca-texto > p { margin: 0; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 34px; line-height: 1.22; }
+.marca-topo > p { margin: 0; text-wrap: balance; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 34px; line-height: 1.22; }
 .marca-texto .codigo { font-family: var(--f-mono); font-size: 20px; }
-.tres-notas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--musgo-escuro); font-size: 12px; line-height: 1.6; }
+/* botão dourado para a página do processo da marca, logo abaixo do texto */
+.marca-topo { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }
+.marca-topo .ir-marca { margin-top: 0; }
+.tres-notas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--musgo-escuro); font-size: 12px; line-height: 1.6; }
 .tres-notas > div { padding: 16px 16px 0; border-left: 1px solid var(--musgo-escuro); }
 .tres-notas > div:first-child { padding-left: 0; border-left: 0; }
 .tres-notas b { font-weight: 400; color: var(--broto); letter-spacing: 0.08em; }
@@ -135,7 +138,8 @@
   .duas-col, .cards { grid-template-columns: 1fr; }
   .tres-notas { grid-template-columns: 1fr; }
   .tres-notas > div, .tres-notas > div:first-child { padding: 14px 0; border-left: 0; border-bottom: 1px solid var(--musgo-escuro); }
-  .marca-texto > p { font-size: 26px; }
+  .marca-topo > p { font-size: 26px; }
+  .marca-texto .codigo { font-size: 14px; white-space: nowrap; }
   .glifo-m { font-size: 6.4px; line-height: 7.4px; }
   .marca-logo { height: 220px; }
 }
