@@ -25,7 +25,7 @@
 
     // 1. encaixa o conteúdo no vidro do monitor
     function encaixar() {
-      var escala = vidro.clientWidth / 640;
+      var escala = vidro.clientWidth / conteudo.offsetWidth; // 640px no computador, 500px no celular
       conteudo.style.transform = 'scale(' + escala + ')';
     }
     encaixar();

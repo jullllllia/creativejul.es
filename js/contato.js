@@ -83,8 +83,9 @@
         // projetos: WhatsApp + Gmail + Outlook (botões quadrados com ícone)
         // vaga (LinkedIn) e "trocar uma ideia" (Discord): um botão com texto
         var projeto = OPCOES[st.op].canal === 'email';
-        $('.ct-icone-zap').hidden = !projeto;
-        $('.ct-icone-txt').textContent = projeto ? '@' : c.icone;
+        // projetos: ícones do WhatsApp + envelope; LinkedIn/Discord: "in" / "#"
+        document.querySelectorAll('.ct-icone-zap').forEach(function (el) { el.hidden = !projeto; });
+        $('.ct-icone-txt').textContent = projeto ? '' : c.icone;
         $('.ct-canal-nome').textContent = projeto ? c[l].nomeZap : c[l].nome;
         $('.ct-porque').textContent = projeto ? c[l].porqueZap : c[l].porque;
         var su = encodeURIComponent(m.assunto), bo = encodeURIComponent(m.corpo);

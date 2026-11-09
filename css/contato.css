@@ -81,3 +81,4 @@
 .ct-icone { display: inline-flex; align-items: center; justify-content: center; }
 .ct-icone-txt { line-height: 1; }
 .ct-canal .ct-icone span { display: inline-flex; margin: 0; font-size: 18px; color: var(--ouro); }
+.pix { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }

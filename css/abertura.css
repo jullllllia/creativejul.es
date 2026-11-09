@@ -9,7 +9,7 @@
 .abertura { display: none; }
 .ab-mostrar .abertura {
   position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 64px max(16px, env(safe-area-inset-right, 0px)) 120px max(16px, env(safe-area-inset-left, 0px));
+  padding: 56px max(16px, env(safe-area-inset-right, 0px)) 104px max(16px, env(safe-area-inset-left, 0px));
   background: var(--noite) url('../img/luz.webp') top center / max(1440px, 100%) auto no-repeat;
   font-family: var(--f-mono); color: var(--papel); overflow: hidden; cursor: pointer;
   transition: background-color .6s;
@@ -33,7 +33,7 @@
 
 /* ---------- o computador ---------- */
 /* largura: o que couber na tela, mantendo a proporção da imagem (1400 × 1042) */
-.ab-pc { position: relative; width: min(860px, 92vw, calc((100vh - 200px) * 1.3436)); transform-origin: 0 0; will-change: transform; }
+.ab-pc { position: relative; width: min(1240px, 96vw, calc((100vh - 160px) * 1.3436)); transform-origin: 0 0; will-change: transform; }
 .ab-pc img { display: block; width: 100%; height: auto; }
 .ab-pc-img { filter: brightness(0.35); animation: abPcAcende 4.6s ease-out forwards; }
 @keyframes abPcAcende { to { filter: brightness(1); } }
@@ -95,6 +95,15 @@
 
 @media (max-width: 700px) {
   .ab-mostrar .abertura { padding-top: 56px; padding-bottom: 150px; }
+  /* celular: o computador fica bem maior (passa um pouco das bordas) e o monitor fica centralizado.
+     O centro do monitor está a ~44% da largura da imagem, por isso o deslocamento de 9vw. */
+  .ab-pc { width: 150vw; left: 9vw; }
+  /* conteúdo da tela desenhado menor, para as letras ficarem maiores no celular */
+  .ab-tela-conteudo { width: 500px; height: 380px; }
+  .ab-glifo { font-size: 7.5px; line-height: 8.4px; }
+  .ab-creative { font-size: 10px; }
+  .ab-carga { margin-top: 18px; width: 440px; }
+  .ab-linhas { min-height: 80px; }
   .ab-topo { left: 16px; right: 16px; top: 20px; font-size: 9px; }
   .ab-entrar { left: 16px; right: 16px; bottom: 72px; justify-content: center; font-size: 11px; }
   .ab-dom { right: 16px; bottom: 26px; }
