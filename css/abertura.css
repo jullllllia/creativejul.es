@@ -45,7 +45,12 @@
 @keyframes abAparece { to { opacity: 1; } }
 
 .ab-entrar { position: absolute; bottom: 44px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 20px; font: inherit; font-size: 12px; letter-spacing: 0.12em; color: var(--papel); background: transparent; border: 1px solid var(--musgo); cursor: pointer; }
-.ab-entrar:hover { border-color: var(--ouro); color: var(--ouro); }
+/* hover: o botão fica todo dourado */
+.ab-entrar { transition: background .15s, color .15s, border-color .15s; }
+.ab-entrar:hover { background: var(--ouro); border-color: var(--ouro); color: #0B0F07; }
+.ab-entrar:hover .ponto { color: #0B0F07; }
+/* o botão já recebe o foco ao abrir (para o Enter funcionar); sem contorno extra por isso */
+.ab-entrar:focus-visible { outline: none; }
 .ab-dom { position: absolute; right: 40px; bottom: 36px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); }
 
 @media (max-width: 700px) {

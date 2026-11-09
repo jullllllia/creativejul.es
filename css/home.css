@@ -27,7 +27,7 @@
 }
 @keyframes crtpisca { 0%{opacity:.55} 7%{opacity:.85} 9%{opacity:.4} 11%{opacity:.75} 38%{opacity:.6} 40%{opacity:.95} 42%{opacity:.6} 71%{opacity:.7} 73%{opacity:.35} 75%{opacity:.7} 100%{opacity:.55} }
 @keyframes crtvarre { from { background-position: 0 -120px, 0 0 } to { background-position: 0 430px, 0 0 } }
-.crt-cursor { position: absolute; left: 50.49%; top: 35.10%; width: 0.63%; height: 1.69%; background: #23271A; pointer-events: none; animation: crtcursor 1.1s ease-in-out infinite; }
+.crt-cursor { position: absolute; left: 54.45%; top: 38.62%; width: 0.83%; height: 2.21%; background: #23271A; pointer-events: none; animation: crtcursor 1.1s ease-in-out infinite; }
 @keyframes crtcursor { 0%, 45% { opacity: 0 } 55%, 100% { opacity: 1 } }
 
 /* ---------- [01] Três linguagens ---------- */

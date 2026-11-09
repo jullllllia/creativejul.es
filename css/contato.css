@@ -49,7 +49,7 @@
 .ct-nav .b98 { min-width: 96px; }
 
 .ct-direto { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px 40px; margin: 88px var(--margem) 0; padding-top: 32px; border-top: 1px solid var(--musgo); }
-.ct-email { user-select: all; }
+.ct-email { text-underline-offset: 6px; }
 .ct-fim { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 56px var(--margem) 40px; color: var(--musgo); }
 
 @media (max-width: 1100px) { .ct-nota { display: none; } }

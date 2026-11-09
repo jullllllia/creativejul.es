@@ -81,7 +81,7 @@
       if (st.op !== null) {
         var c = CANAIS[OPCOES[st.op].canal], m = textoMensagem();
         // projetos (e-mail) com WhatsApp configurado: mostra as duas opções
-        var temZap = OPCOES[st.op].canal === 'email' && !!window.JULES_WHATSAPP;
+        var temZap = OPCOES[st.op].canal === 'email';
         $('.ct-icone').textContent = temZap ? '@ ✆' : c.icone;
         $('.ct-canal-nome').textContent = temZap ? c[l].nomeZap : c[l].nome;
         $('.ct-porque').textContent = temZap ? c[l].porqueZap : c[l].porque;
@@ -90,7 +90,7 @@
         if (temZap) {
           zap.textContent = c[l].zap;
           // no WhatsApp vai só a mensagem (sem a linha de "Assunto")
-          zap.href = 'https://wa.me/' + window.JULES_WHATSAPP + '?text=' + encodeURIComponent(m.corpo);
+          zap.href = 'https://wa.me/' + (window.JULES_WHATSAPP || '') + '?text=' + encodeURIComponent(m.corpo);
         }
         $('.ct-msg').textContent = m.completa;
         var ir = $('.ct-ir');
@@ -151,6 +151,22 @@
       }
       if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, jeitoAntigo);
       else jeitoAntigo();
+    });
+    // endereço de e-mail no rodapé: copia o endereço e abre o Gmail já com ele no "Para"
+    var linkEmail = document.querySelector('.ct-email');
+    if (linkEmail) linkEmail.addEventListener('click', function () {
+      function avisa() {
+        var antes = linkEmail.textContent;
+        linkEmail.textContent = L() === 'en' ? 'COPIED! ↗' : 'COPIADO! ↗';
+        setTimeout(function () { linkEmail.textContent = antes; }, 1800);
+      }
+      try {
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(EMAIL).then(avisa, function () {});
+        else {
+          var c = document.createElement('textarea'); c.value = EMAIL; c.style.position = 'fixed'; c.style.opacity = '0';
+          document.body.appendChild(c); c.select(); if (document.execCommand('copy')) avisa(); document.body.removeChild(c);
+        }
+      } catch (e) {}
     });
     document.addEventListener('idioma', function () { desenhar(false); });
     desenhar(false);
