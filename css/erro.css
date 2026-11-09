@@ -1,0 +1,37 @@
+/* =====================================================================
+   erro.css — página 404 (a "tela azul" do jules.OS)
+   ===================================================================== */
+body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.area { position: fixed; inset: 0 0 40px 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.erro-fundo { position: absolute; left: 4%; top: 90px; margin: 0; font-family: var(--f-mono); font-weight: 700; font-style: italic; font-size: clamp(90px, 17vw, 260px); line-height: 1; letter-spacing: 0.02em; white-space: nowrap; color: transparent; -webkit-text-stroke: 1.5px rgba(94,107,51,0.55); }
+.icones { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; width: 100px; padding: 28px 0 0 20px; }
+.icones a, .icones > span { display: flex; flex-direction: column; align-items: center; gap: 6px; font-family: var(--f-janela); font-size: 13px; color: var(--papel); text-decoration: none; text-shadow: 0 1px 2px #000; }
+.icones a:hover { color: var(--ouro); }
+.erro { position: relative; z-index: 2; width: min(100% - 32px, 586px); margin: 40px auto auto; padding: 3px; }
+.erro .barra-titulo { height: 28px; font-size: 13px; }
+.fechar { width: 20px; height: 18px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #171C10; background: var(--bege); font-size: 13px; box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #4A4430; }
+.erro-corpo { display: flex; gap: 20px; padding: 24px 22px 12px; }
+.erro-corpo svg { flex-shrink: 0; }
+.erro h1 { margin: 0 0 12px; font-size: 15px; line-height: 1.4; }
+.erro p { margin: 0; font-size: 13px; line-height: 1.6; }
+.erro-det { margin: 4px 22px 10px; padding: 10px 12px; font-family: var(--f-mono); font-size: 12px; line-height: 1.6; white-space: pre-wrap; background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; }
+.erro-botoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding: 6px 18px 18px; }
+.b98 { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; min-width: 120px; padding: 0 16px; border: 0; cursor: pointer; text-decoration: none; font-family: var(--f-janela); font-size: 13px; color: #171C10; background: var(--bege); box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
+.b98:hover { color: #171C10; background: #E2DBC2; }
+.b98.forte { font-weight: 700; min-width: 170px; box-shadow: 0 0 0 1px #171C10, inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
+.tarefas { position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 4px; padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--bege); font-family: var(--f-janela); font-size: 13px; color: #171C10; box-shadow: inset 0 1px 0 #FFFBEA, 0 -1px 0 #8C8468; }
+.iniciar { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 8px; font-weight: 700; color: #171C10; text-decoration: none; box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; }
+.iniciar:hover { color: #171C10; }
+.iniciar span:first-child { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: var(--ouro); font-family: var(--f-mono); font-size: 11px; font-weight: 700; font-style: italic; }
+.tarefa { flex: 0 1 320px; min-width: 0; height: 32px; display: flex; align-items: center; padding: 0 10px; font-weight: 700; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; background: repeating-linear-gradient(45deg, rgba(255,251,234,0.35) 0 2px, transparent 2px 4px); }
+.relogio { margin-left: auto; height: 32px; display: flex; align-items: center; gap: 10px; padding: 0 10px; font-family: var(--f-mono); font-size: 12px; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; }
+.relogio .idioma button { color: #5A5440; padding: 2px; }
+.relogio .idioma button[aria-pressed="true"] { color: #171C10; }
+@media (max-width: 700px) {
+  .icones { flex-direction: row; width: auto; gap: 18px; padding: 20px 16px 0; }
+  .erro { margin-top: 32px; }
+  .erro-corpo { gap: 14px; padding: 18px 16px 10px; }
+  .erro-botoes { justify-content: stretch; padding: 6px 12px 16px; }
+  .erro-botoes > * { flex: 1 1 100%; }
+  .tarefa { display: none; }
+}

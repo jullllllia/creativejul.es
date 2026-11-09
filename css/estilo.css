@@ -1,0 +1,154 @@
+/* =====================================================================
+   jules. — estilo compartilhado por todas as páginas
+   ---------------------------------------------------------------------
+   Como ler este arquivo:
+   1. "Tokens" (variáveis) — cores, fontes e medidas usadas no site todo.
+   2. Base — regras gerais (corpo da página, links, fundo com grão).
+   3. Componentes — cabeçalho, janelas estilo Windows 98, rodapé etc.
+   4. Telas menores — ajustes para tablet e celular (@media).
+   ===================================================================== */
+
+/* ---------- 1. TOKENS ---------- */
+:root {
+  --noite: #0E120A;        /* fundo principal */
+  --noite-2: #171C10;      /* superfícies escuras */
+  --musgo: #5E6B33;        /* linhas, números */
+  --musgo-escuro: #3A4320; /* bordas discretas */
+  --broto: #A3B35C;        /* rótulos, destaques verdes */
+  --papel: #EDEBDD;        /* texto principal */
+  --papel-2: #D6D8C6;      /* texto corrido */
+  --ouro: #E4B028;         /* acento (pontos finais, botão) */
+  --bege: #D4CCB0;         /* janelas estilo 98 */
+
+  --f-titulo: Helvetica, Arimo, Arial, sans-serif;
+  --f-serifa: 'IM Fell English', 'Times New Roman', serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --f-mao: 'Just Me Again Down Here', cursive;
+  --f-janela: Tahoma, Verdana, sans-serif;
+
+  --margem: clamp(16px, 4.4vw, 64px);   /* margem lateral: 16px no celular, 64px no desktop */
+  --largura: 1440px;                     /* largura máxima do conteúdo */
+}
+
+/* ---------- 2. BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  /* fundo: manchas de luz verde (imagem leve, ampliada) */
+  background: var(--noite) url('../img/luz.webp') top center / max(1440px, 100%) auto no-repeat;
+  color: var(--papel);
+  font-family: var(--f-mono);
+  overflow-x: hidden;
+}
+/* granulação de filme: uma textura pequena que se repete pela página toda.
+   Ela fica ATRÁS do conteúdo (z-index 0), então só o fundo ganha grão e os textos ficam nítidos. */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: url('../img/grao.png') repeat; mix-blend-mode: overlay; opacity: 0.4;
+}
+/* camada de pontinhos por cima de tudo, como na versão do canvas */
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(rgba(237,235,221,0.05) 0.6px, transparent 0.9px),
+                    radial-gradient(rgba(0,0,0,0.4) 0.9px, transparent 1.2px);
+  background-size: 2px 2px, 4px 3px;
+  mix-blend-mode: overlay;
+}
+img { max-width: 100%; }
+a { color: var(--papel); }
+a:hover { color: var(--ouro); }
+:focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
+.pagina { max-width: var(--largura); margin: 0 auto; position: relative; z-index: 1; } /* conteúdo na frente do grão */
+.visualmente-oculto { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* títulos em Helvetica com desfoque (o efeito "impresso") */
+.titulo { margin: 0; font-family: var(--f-titulo); font-weight: 600; font-style: normal; letter-spacing: -0.068em; }
+.bl { display: inline-block; filter: blur(var(--b, 1.4px)); }
+.verde { color: var(--broto); }
+.ponto { color: var(--ouro); }
+.rotulo { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--broto); margin: 0; }
+
+/* ---------- 3. COMPONENTES ---------- */
+
+/* Cabeçalho */
+.cabecalho {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  height: 72px; padding: 0 clamp(16px, 3.3vw, 48px);
+  border-bottom: 1px solid var(--musgo-escuro);
+  font-size: 12px; letter-spacing: 0.08em;
+}
+.cabecalho .logo { text-decoration: none; display: flex; align-items: center; }
+.glifo { display: block; font-family: var(--f-mono); font-weight: 700; letter-spacing: 0; white-space: pre; }
+.glifo-p { font-size: 3.2px; line-height: 3.4px; }
+.menu { display: flex; gap: clamp(20px, 3.3vw, 48px); }
+.menu a { text-decoration: none; padding-bottom: 4px; }
+.menu a[aria-current="page"] { border-bottom: 1px solid var(--ouro); }
+.menu .n { color: var(--musgo); }
+.cab-dir { display: flex; align-items: center; gap: 28px; color: var(--broto); }
+.idioma { display: flex; gap: 6px; align-items: center; }
+.idioma button { font: inherit; letter-spacing: inherit; background: none; border: 0; padding: 4px 2px; color: var(--broto); cursor: pointer; }
+.idioma button[aria-pressed="true"] { color: var(--papel); font-weight: 700; }
+
+/* Janela estilo Windows 98 */
+.janela {
+  position: relative; background: var(--bege); padding: 4px;
+  font-family: var(--f-janela); font-size: 13px; color: #171C10;
+  box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468, 0 40px 80px rgba(0,0,0,0.55);
+}
+.janela::after { /* grão leve por cima da janela */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(20,20,15,0.08) 0.7px, transparent 1.1px), radial-gradient(rgba(255,250,232,0.12) 0.8px, transparent 1.2px), linear-gradient(170deg, rgba(255,214,150,0.05), rgba(0,0,0,0.03));
+  background-size: 3px 3px, 4px 5px, auto; mix-blend-mode: multiply;
+}
+.barra-titulo {
+  height: 30px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 0 4px 0 10px; background: linear-gradient(to right, #2E3619, #6B7A3A); color: #FFF; font-weight: 700;
+  white-space: nowrap; overflow: hidden;
+}
+.barra-titulo > span:first-child { overflow: hidden; text-overflow: ellipsis; }
+.botoes-janela { display: flex; gap: 3px; flex-shrink: 0; }
+.botoes-janela span { width: 22px; height: 20px; background: var(--bege); color: #171C10; text-align: center; line-height: 18px; box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #4A4430; }
+.afundado { background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; }
+
+/* Botão dourado */
+.botao {
+  display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px;
+  background: var(--ouro); color: #0B0F07; text-decoration: none;
+  font-family: var(--f-mono); font-weight: 700; font-size: 19px; letter-spacing: -0.03em;
+  transition: transform .15s;
+}
+.botao:hover { color: #0B0F07; transform: rotate(-1deg) scale(1.03); }
+
+/* Cabeçalho de seção: "[ 01 ] TEXTO" */
+.secao-topo { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; border-top: 1px solid var(--musgo); }
+
+/* Contato (rodapé) */
+.contato {
+  display: flex; justify-content: space-between; gap: 40px;
+  padding: 56px clamp(16px, 3.3vw, 48px) 40px var(--margem);
+  border-top: 1px solid var(--musgo);
+}
+.contato .titulo { font-size: clamp(72px, 9.2vw, 132px); line-height: 0.73; }
+.contato .col { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; }
+.redes { display: flex; flex-wrap: wrap; gap: 16px 40px; font-size: 13px; letter-spacing: 0.08em; }
+.redes a { text-underline-offset: 6px; }
+.contato .dir { align-items: flex-end; }
+.glifo-g { font-size: 9px; line-height: 10.5px; color: var(--musgo); }
+.assinatura { font-size: 13px; color: var(--musgo); white-space: nowrap; }
+
+/* Animações e acessibilidade */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* ---------- 4. TELAS MENORES ---------- */
+@media (max-width: 900px) {
+  .cab-dir .coord { display: none; }
+}
+@media (max-width: 700px) {
+  .cabecalho { height: auto; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; row-gap: 12px; }
+  .menu { order: 3; width: 100%; justify-content: space-between; gap: 12px; font-size: 11px; }
+  .contato { flex-direction: column; }
+  .contato .dir { align-items: flex-start; }
+  .glifo-g { font-size: 6px; line-height: 7px; }
+}

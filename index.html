@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jules. — code, design &amp; play</title>
+<meta name="description" content="Portfólio de Jullia Tavares (jules.): design gráfico, direção de arte, desenvolvimento web, UX/UI e QA. São Paulo, Brasil.">
+<link rel="icon" href="img/favicon.png">
+<meta property="og:title" content="jules. — code, design &amp; play">
+<meta property="og:description" content="Portfólio de Jullia Tavares: design, código e games.">
+<meta property="og:image" content="https://creativejul.es/img/compartilhar.jpg">
+<meta property="og:url" content="https://creativejul.es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&amp;family=IM+Fell+English&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/home.css">
+<script src="js/idioma.js" defer></script>
+<script src="js/explorador.js" defer></script>
+<link rel="stylesheet" href="css/abertura.css">
+<script>
+/* tela de abertura: aparece só na primeira visita de cada sessão.
+   Este pedacinho roda antes da página desenhar, para a home não "piscar" antes da abertura. */
+try { if (!sessionStorage.getItem('jules-abertura')) document.documentElement.classList.add('ab-mostrar'); }
+catch (e) { document.documentElement.classList.add('ab-mostrar'); }
+</script>
+<script src="js/abertura.js" defer></script>
+</head>
+<body>
+<div id="abertura" class="abertura" role="dialog" aria-modal="true" aria-labelledby="ab-titulo" data-en-label="Opening screen" aria-label="Tela de abertura">
+<div class="ab-topo"><span>jules.OS 98 · BIOS v1.0</span><span data-en="MEMORY: 640K OK · PT / EN">MEMÓRIA: 640K OK · PT / EN</span></div>
+<h1 id="ab-titulo" class="ab-logo" aria-label="jules. creative"><span class="glifo ab-glifo" aria-hidden="true">             <span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span>                  <span style="color: #A3B35C">.:::::</span>
+            <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">####</span><span style="color: #5E6B33">.</span>                 <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##*</span>
+            <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>                  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>
+                                  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###+</span>
+          <span style="color: #A3B35C">.:---.</span> <span style="color: #A3B35C">.:---:</span>   <span style="color: #A3B35C">:--:</span>    <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>      <span style="color: #A3B35C">:--:-.</span>     <span style="color: #A3B35C">.--:::</span><span style="color: #5E6B33">.</span>
+           <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span>  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span>   <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###+</span>    <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">-</span><span style="color: #5E6B33">.:</span><span style="color: #EDEBDD">##+</span>  <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">##</span><span style="color: #A3B35C">-</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">-</span>
+          <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###*</span><span style="color: #5E6B33">.</span>  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>   <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>   <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span> <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">**</span><span style="color: #A3B35C">:</span>
+          <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span>  <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span>   <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span>   <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">-:</span><span style="color: #EDEBDD">+##+</span><span style="color: #A3B35C">:</span>   <span style="color: #5E6B33">.</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">####+</span><span style="color: #A3B35C">:</span>
+         <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##*</span>  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###*</span><span style="color: #5E6B33">.</span> <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">####</span><span style="color: #5E6B33">.</span> <span style="color: #A3B35C">.</span> <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span> <span style="color: #A3B35C">.</span><span style="color: #5E6B33">.</span><span style="color: #EDEBDD">####</span><span style="color: #A3B35C">:.</span>       <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">+</span><span style="color: #A3B35C">=</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">.=</span><span style="color: #EDEBDD">###*</span>  <span style="color: #5E6B33">.</span><span style="color: #E4B028">-=</span><span style="color: #A3B35C">:</span>
+         <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>  <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span> <span style="color: #A3B35C">:-</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">-</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span><span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span><span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">=</span>    <span style="color: #5E6B33">.</span><span style="color: #A3B35C">-</span>  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span>  <span style="color: #5E6B33">:</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">..</span><span style="color: #E4B028">####=</span>
+         <span style="color: #EDEBDD">*##*</span>    <span style="color: #EDEBDD">+##</span><span style="color: #A3B35C">+-</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">=-</span><span style="color: #5E6B33">.</span>  <span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">=-.</span>  <span style="color: #5E6B33">.</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">##</span><span style="color: #A3B35C">-::-:</span>    <span style="color: #A3B35C">:=-::-</span><span style="color: #EDEBDD">+*</span><span style="color: #A3B35C">-</span>   <span style="color: #E4B028">+###</span><span style="color: #A3B35C">.</span>
+        <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>
+  <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">##*</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">:</span>
+  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">:</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">#</span><span style="color: #A3B35C">+</span><span style="color: #5E6B33">.</span>
+   <span style="color: #5E6B33">.</span><span style="color: #A3B35C">:::.</span></span><span class="ab-creative" aria-hidden="true">CREATIVE</span></h1>
+<div class="ab-carga">
+<p class="ab-status" role="status"><span><span data-en="Starting jules.exe">Iniciando jules.exe</span><span class="ab-cursor" aria-hidden="true">_</span></span><span class="verde">v1.0 · 2026</span></p>
+<div class="ab-barra" aria-hidden="true"><div></div></div>
+<div class="ab-linhas" aria-hidden="true">
+<span style="--d: 0.8s"><span data-en="&gt; loading code.sys">&gt; carregando code.sys</span> <i></i> <b>ok</b></span>
+<span style="--d: 1.6s"><span data-en="&gt; loading design.dll">&gt; carregando design.dll</span> <i></i> <b>ok</b></span>
+<span style="--d: 2.4s"><span data-en="&gt; loading play.exe">&gt; carregando play.exe</span> <i></i> <b>ok</b></span>
+<span style="--d: 3.2s"><span data-en="&gt; mounting C:\ code · D:\ design · P:\ play">&gt; montando C:\ code · D:\ design · P:\ play</span> <i></i> <b>ok</b></span>
+<span style="--d: 4.6s" class="ab-pronto" data-en="&gt; ready. welcome, visitor.">&gt; pronto. bem-vinda, pessoa visitante.</span>
+</div>
+</div>
+<button type="button" class="ab-entrar"><span class="ab-teclado" data-en="PRESS ENTER OR CLICK TO ENTER">PRESSIONE ENTER OU CLIQUE PARA ENTRAR</span><span class="ab-toque" data-en="TAP TO ENTER">TOQUE PARA ENTRAR</span> <span class="ponto" aria-hidden="true">↵</span></button>
+<span class="ab-assin" aria-hidden="true">jules<span class="ponto">.</span></span>
+<span class="ab-dom" aria-hidden="true">CREATIVEJUL.ES</span>
+</div>
+<div class="pagina">
+
+<header class="cabecalho">
+<a class="logo" href="index.html" aria-label="jules. — início" data-en-label="jules. — home"><span class="glifo glifo-p" aria-hidden="true">             <span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span>  
+            <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">####</span><span style="color: #5E6B33">.</span>
+            <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span> 
+                  
+          <span style="color: #5E6B33">.</span><span style="color: #A3B35C">:---</span><span style="color: #5E6B33">.</span>  
+           <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>  
+          <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>   
+          <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>   
+         <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##*</span>    <span style="color: #A38A2E">.-</span><span style="color: #E4B028">=</span><span style="color: #A38A2E">:</span>
+         <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>    <span style="color: #A38A2E">..</span><span style="color: #E4B028">####=</span>
+         <span style="color: #EDEBDD">*##*</span>     <span style="color: #E4B028">+###</span><span style="color: #A38A2E">.</span>
+        <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>     
+  <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">##*</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">:</span>      
+  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:=</span><span style="color: #EDEBDD">#+</span><span style="color: #5E6B33">.</span>       
+   <span style="color: #5E6B33">.</span><span style="color: #A3B35C">:::</span><span style="color: #5E6B33">.</span>          </span></a>
+<nav class="menu" aria-label="Principal" data-en-label="Main">
+<a href="#pastas"><span class="n">01</span> <span data-en="PROJECTS">PROJETOS</span></a>
+<a href="sobre.html"><span class="n">02</span> <span data-en="ABOUT">SOBRE</span></a>
+<a href="contato.html"><span class="n">03</span> <span data-en="CONTACT">CONTATO</span></a>
+</nav>
+<div class="cab-dir"><span class="coord">23°33′S 46°38′W</span>
+<div class="idioma" role="group" aria-label="Idioma" data-en-label="Language"><button type="button" data-lang="pt" aria-pressed="true">PT</button>/<button type="button" data-lang="en" aria-pressed="false">EN</button></div></div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="hero-titulo">
+<div class="hero-texto">
+<h1 id="hero-titulo" class="titulo"><span class="bl" style="--b: 1.8px">Code, design</span><br><span class="bl verde" style="--b: 1.8px">&amp; play<span class="ponto">.</span></span></h1>
+<p data-en="I build identities, explore technology and turn ideas into visual, interactive experiences.">crio identidades, exploro tecnologias e transformo ideias em experiências visuais e interativas.</p>
+<div class="hero-acoes">
+<a class="botao" href="#pastas" data-en="Open the folders">Abrir as pastas</a>
+<a class="link" href="#contato" data-en="get in touch">entre em contato</a>
+</div>
+</div>
+<figure class="computador">
+<img src="img/computador.webp" width="848" height="962" alt="Computador bege antigo, com monitor de tubo mostrando a área de trabalho do jules.OS, fotografado em filme" data-en-alt="Old beige computer with a CRT monitor showing the jules.OS desktop, shot on film">
+<div class="crt-tela" aria-hidden="true"></div>
+<span class="crt-cursor" aria-hidden="true"></span>
+</figure>
+</section>
+
+<section class="linguagens" aria-labelledby="ling-titulo">
+<div class="secao-topo"><h2 id="ling-titulo" class="rotulo">[ 01 ]&nbsp;&nbsp;<span data-en="ONE IDENTITY, THREE LANGUAGES">UMA IDENTIDADE, TRÊS LINGUAGENS</span></h2></div>
+<div class="tres">
+<article><p class="unidade">C:\</p><h3>Code<span class="ponto">.</span></h3>
+<p class="desc" data-en="programming, web development, interfaces, automation, digital tools, technical studies and software projects.">programação, desenvolvimento web, interfaces, automações, ferramentas digitais, estudos técnicos e projetos de software.</p>
+<a href="#pastas" data-en="EXPLORE ↗">EXPLORAR ↗</a></article>
+<article><p class="unidade">D:\</p><h3>Design<span class="ponto">.</span></h3>
+<p class="desc" data-en="visual identity, branding, art direction, communication, editorial projects and graphic experiences.">identidade visual, branding, direção de arte, comunicação, projetos editoriais e experiências gráficas.</p>
+<a href="#pastas" data-en="EXPLORE ↗">EXPLORAR ↗</a></article>
+<article><p class="unidade">P:\</p><h3>Play<span class="ponto">.</span></h3>
+<p class="desc" data-en="games, roleplay, world-building, game interfaces, community projects, streaming and interactive experiences.">games, roleplay, criação de universos, interfaces para jogos, projetos de comunidades, streaming e experiências interativas.</p>
+<a href="#pastas" data-en="EXPLORE ↗">EXPLORAR ↗</a></article>
+</div>
+</section>
+
+<section class="marcas" aria-labelledby="marcas-titulo">
+<h2 id="marcas-titulo" data-en="BRANDS I’VE WORKED WITH">MARCAS COM QUE JÁ TRABALHEI</h2>
+<div class="faixa"><div class="trilho"><ul aria-label="Marcas" data-en-label="Brands"><li><img src="img/marcas/budweiser.webp" alt="Budweiser" style="height: 40px" loading="lazy"></li><li><img src="img/marcas/mastercard.webp" alt="Mastercard" style="height: 54px" loading="lazy"></li><li><img src="img/marcas/mercado-livre.webp" alt="Mercado Livre" style="height: 36px" loading="lazy"></li><li><img src="img/marcas/spaten.webp" alt="Spaten" style="height: 32px" loading="lazy"></li><li><img src="img/marcas/formula-e.webp" alt="Formula E" style="height: 36px" loading="lazy"></li><li><img src="img/marcas/clear.webp" alt="Clear" style="height: 38px" loading="lazy"></li><li><img src="img/marcas/betfair.webp" alt="Betfair" style="height: 30px" loading="lazy"></li><li><img src="img/marcas/crunchyroll.webp" alt="Crunchyroll" style="height: 32px" loading="lazy"></li></ul><ul aria-hidden="true"><li><img src="img/marcas/budweiser.webp" alt="" style="height: 40px" loading="lazy"></li><li><img src="img/marcas/mastercard.webp" alt="" style="height: 54px" loading="lazy"></li><li><img src="img/marcas/mercado-livre.webp" alt="" style="height: 36px" loading="lazy"></li><li><img src="img/marcas/spaten.webp" alt="" style="height: 32px" loading="lazy"></li><li><img src="img/marcas/formula-e.webp" alt="" style="height: 36px" loading="lazy"></li><li><img src="img/marcas/clear.webp" alt="" style="height: 38px" loading="lazy"></li><li><img src="img/marcas/betfair.webp" alt="" style="height: 30px" loading="lazy"></li><li><img src="img/marcas/crunchyroll.webp" alt="" style="height: 32px" loading="lazy"></li></ul></div></div>
+</section>
+
+<section id="pastas" class="projetos" aria-labelledby="pastas-titulo">
+<p class="rotulo">[ 02 ]&nbsp;&nbsp;<span data-en="PROJECTS">PROJETOS</span></p>
+<h2 id="pastas-titulo" class="titulo"><span class="bl" style="--b: 1.6px" data-en="Explore the folders<span class=&quot;ponto&quot;>.</span>">Explore as pastas<span class="ponto">.</span></span></h2>
+<p class="sub" data-en="three drives: code, design and play. open a folder to see the projects.">três unidades: código, design e play. abra uma pasta para ver os projetos.</p>
+
+<div id="explorador" class="janela">
+<div class="barra-titulo"><span data-endereco></span><span class="botoes-janela" aria-hidden="true"><span>_</span><span>□</span><span>×</span></span></div>
+<div class="menu-janela" aria-hidden="true"><span data-en="<u>F</u>ile"><u>A</u>rquivo</span><span data-en="<u>E</u>dit"><u>E</u>ditar</span><span data-en="<u>V</u>iew"><u>E</u>xibir</span><span data-en="F<u>a</u>vorites"><u>F</u>avoritos</span><span data-en="<u>H</u>elp">A<u>j</u>uda</span></div>
+<div class="endereco"><span data-en="Address">Endereço</span><span class="campo afundado" data-endereco></span></div>
+<div class="ex-corpo">
+<nav class="ex-nav afundado" aria-label="Pastas" data-en-label="Folders">
+<span class="ex-raiz"><svg aria-hidden="true" width="20" height="16" viewBox="0 0 30 24"><rect x="1" y="5" width="28" height="14" rx="1" fill="#D4CCB0" stroke="#2C2A1E"/><circle cx="24" cy="12" r="1.6" fill="#A3B35C"/></svg><span data-en="My Computer">Meu computador</span></span>
+<div class="ex-pastas"></div>
+</nav>
+<div class="ex-direita afundado">
+<div class="ex-info">
+<svg aria-hidden="true" width="64" height="52" viewBox="0 0 30 24"><path d="M1 4h10l3 3h15v16H1z" fill="#E4B028" stroke="#6E5410" stroke-width="0.6"/><path d="M1 9h28" stroke="#F3D16E" stroke-width="0.6"/></svg>
+<span class="ex-titulo"></span>
+<span class="ex-linha-deco"></span>
+<p class="ex-desc"></p>
+<div class="ex-halftone" aria-hidden="true"></div>
+</div>
+<div class="ex-lista">
+<div class="ex-cab" aria-hidden="true"><span data-en="Name">Nome</span><span data-en="Type">Tipo</span><span data-en="Year">Ano</span></div>
+<ul class="ex-arquivos"></ul>
+</div>
+</div>
+</div>
+<div class="ex-status"><span class="ex-qtd"></span><span data-en="My Computer">Meu computador</span></div>
+</div>
+</section>
+
+<section class="como" aria-labelledby="como-titulo">
+<div class="secao-topo"><h2 id="como-titulo" class="rotulo">[ 03 ]&nbsp;&nbsp;<span data-en="HOW I WORK">COMO TRABALHO</span></h2><svg aria-hidden="true" class="sol" width="36" height="36" viewBox="-50 -50 100 100"><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(0)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(15)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(30)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(45)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(60)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(75)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(90)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(105)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(120)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(135)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(150)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(165)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(180)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(195)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(210)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(225)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(240)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(255)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(270)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(285)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(300)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(315)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-20" x2="0" y2="-48" transform="rotate(330)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line><line x1="0" y1="-14" x2="0" y2="-48" transform="rotate(345)" stroke="#E4B028" stroke-width="2.4" stroke-linecap="round"></line></svg></div>
+<div class="linhas">
+<div class="linha"><span class="rot" data-en="(approach)">(abordagem)</span><p><span data-en="I design the interface, write the code and test every flow before delivering. What leaves the layout is what goes live.">Eu desenho a interface, escrevo o código e testo cada fluxo antes de entregar. O que sai do layout é o que chega no ar.</span></p><span class="num">01</span></div>
+<div class="linha"><span class="rot" data-en="(focus)">(foco)</span><p><span data-en="Understand who will use it before opening the editor. Clear, consistent and frictionless.">Entender quem vai usar antes de abrir o editor. Clara, consistente e sem atrito.</span></p><span class="num">02</span></div>
+<div class="linha"><span class="rot" data-en="(path)">(trajetória)</span><p><span data-en="From Advertising to Web Development.">De Publicidade e Propaganda para Desenvolvimento Web.</span></p><span class="num">03</span></div>
+</div>
+<p class="mais"><a href="sobre.html" data-en="MORE ABOUT ME, RESUME AND ACHIEVEMENTS →">MAIS SOBRE MIM, CURRÍCULO E CONQUISTAS →</a></p>
+</section>
+</main>
+
+<footer id="contato" class="contato" aria-labelledby="contato-titulo">
+<div class="col">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="rotulo">[ 04 ]&nbsp;&nbsp;<span data-en="CONTACT">CONTATO</span></span>
+<h2 id="contato-titulo" class="titulo" data-en="<span class=&quot;bl&quot; style=&quot;--b: 1.7px&quot;>Let’s</span><br><span class=&quot;bl verde&quot; style=&quot;--b: 1.7px&quot;>talk<span class=&quot;ponto&quot;>?</span></span>"><span class="bl" style="--b: 1.7px">Bora</span><br><span class="bl verde" style="--b: 1.7px">conversar<span class="ponto">?</span></span></h2>
+</div>
+<nav class="redes" aria-label="Redes" data-en-label="Social">
+<a href="https://www.linkedin.com/in/julliaht/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+<a href="https://github.com/jullllllia" target="_blank" rel="noopener">GITHUB ↗</a>
+<a href="https://discord.gg/6fMatUvej8" target="_blank" rel="noopener">DISCORD ↗</a>
+<a href="https://www.instagram.com/julliaht/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+</nav>
+</div>
+<div class="col dir">
+<span class="glifo glifo-g" aria-hidden="true">             <span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span>                  <span style="color: #A3B35C">.:::::</span>
+            <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">####</span><span style="color: #5E6B33">.</span>                 <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##*</span>
+            <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>                  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>
+                                  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###+</span>
+          <span style="color: #A3B35C">.:---.</span> <span style="color: #A3B35C">.:---:</span>   <span style="color: #A3B35C">:--:</span>    <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>      <span style="color: #A3B35C">:--:-.</span>     <span style="color: #A3B35C">.--:::</span><span style="color: #5E6B33">.</span>
+           <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span>  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span>   <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###+</span>    <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">-</span><span style="color: #5E6B33">.:</span><span style="color: #EDEBDD">##+</span>  <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">##</span><span style="color: #A3B35C">-</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">-</span>
+          <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###*</span><span style="color: #5E6B33">.</span>  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>   <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span>   <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span> <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">**</span><span style="color: #A3B35C">:</span>
+          <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span>  <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span>   <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span>   <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">-:</span><span style="color: #EDEBDD">+##+</span><span style="color: #A3B35C">:</span>   <span style="color: #5E6B33">.</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">####+</span><span style="color: #A3B35C">:</span>
+         <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##*</span>  <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###*</span><span style="color: #5E6B33">.</span> <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">####</span><span style="color: #5E6B33">.</span> <span style="color: #A3B35C">.</span> <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">.</span> <span style="color: #A3B35C">.</span><span style="color: #5E6B33">.</span><span style="color: #EDEBDD">####</span><span style="color: #A3B35C">:.</span>       <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">+</span><span style="color: #A3B35C">=</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">.=</span><span style="color: #EDEBDD">###*</span>  <span style="color: #5E6B33">.</span><span style="color: #E4B028">-=</span><span style="color: #A3B35C">:</span>
+         <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>  <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span> <span style="color: #A3B35C">:-</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">-</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span><span style="color: #5E6B33">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">=</span><span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span><span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">=</span>    <span style="color: #5E6B33">.</span><span style="color: #A3B35C">-</span>  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">:</span>  <span style="color: #5E6B33">:</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">..</span><span style="color: #E4B028">####=</span>
+         <span style="color: #EDEBDD">*##*</span>    <span style="color: #EDEBDD">+##</span><span style="color: #A3B35C">+-</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">=-</span><span style="color: #5E6B33">.</span>  <span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">=-.</span>  <span style="color: #5E6B33">.</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">##</span><span style="color: #A3B35C">-::-:</span>    <span style="color: #A3B35C">:=-::-</span><span style="color: #EDEBDD">+*</span><span style="color: #A3B35C">-</span>   <span style="color: #E4B028">+###</span><span style="color: #A3B35C">.</span>
+        <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>
+  <span style="color: #A3B35C">-</span><span style="color: #EDEBDD">##*</span><span style="color: #5E6B33">..</span><span style="color: #EDEBDD">*##</span><span style="color: #A3B35C">:</span>
+  <span style="color: #A3B35C">=</span><span style="color: #EDEBDD">###</span><span style="color: #5E6B33">:</span><span style="color: #A3B35C">=</span><span style="color: #EDEBDD">#</span><span style="color: #A3B35C">+</span><span style="color: #5E6B33">.</span>
+   <span style="color: #5E6B33">.</span><span style="color: #A3B35C">:::.</span></span>
+<span class="assinatura" data-en="(this is not an image.) © 2026">(isto não é uma imagem.) © 2026</span>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

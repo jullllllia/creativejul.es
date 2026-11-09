@@ -1,0 +1,62 @@
+/* =====================================================================
+   abertura.css — tela de "boot" do jules.OS, só na home
+   Fica escondida por padrão. O script no <head> do index.html coloca a
+   classe "ab-mostrar" no <html> quando é a primeira visita da sessão.
+   ===================================================================== */
+.abertura { display: none; }
+.ab-mostrar .abertura {
+  position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--noite) url('../img/luz.webp') top center / max(1440px, 100%) auto no-repeat;
+  font-family: var(--f-mono); color: var(--papel); overflow: hidden; cursor: pointer;
+}
+.ab-mostrar body { overflow: hidden; }
+/* linhas de monitor antigo por cima */
+.abertura::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(to bottom, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 3px); }
+.abertura.saindo { animation: abSai .45s ease-in forwards; }
+@keyframes abSai { to { opacity: 0; transform: scale(1.02); } }
+
+.ab-topo { position: absolute; left: 40px; right: 40px; top: 32px; display: flex; justify-content: space-between; gap: 16px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); }
+.ab-logo { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; font-weight: 400; opacity: 0; animation: abSobe .8s ease-out .1s forwards; }
+.ab-glifo { font-size: 13px; line-height: 14.5px; color: var(--musgo); }
+.ab-creative { font-size: 14px; font-weight: 500; letter-spacing: 0.62em; color: var(--broto); margin-right: -0.62em; }
+@keyframes abSobe { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.ab-carga { margin-top: 56px; width: min(560px, 100%); display: flex; flex-direction: column; gap: 14px; }
+.ab-status { margin: 0; display: flex; justify-content: space-between; gap: 12px; font-size: 13px; letter-spacing: 0.06em; }
+.ab-cursor { color: var(--ouro); animation: abPisca 1s steps(1) infinite; }
+@keyframes abPisca { 50% { opacity: 0; } }
+.ab-barra { height: 26px; padding: 3px; background: var(--noite-2); box-shadow: inset 1px 1px 0 #2C2A1E, inset -1px -1px 0 var(--musgo), inset 2px 2px 0 #0B0F07; }
+.ab-barra div { width: 0; height: 100%; background-image: repeating-linear-gradient(to right, var(--broto) 0px, var(--broto) 22px, transparent 22px, transparent 26px); animation: abCarrega 4.2s steps(21) .4s forwards; }
+@keyframes abCarrega { to { width: 100%; } }
+.ab-linhas { display: flex; flex-direction: column; gap: 6px; min-height: 110px; font-size: 12px; color: var(--broto); }
+.ab-linhas > span { display: flex; gap: 8px; align-items: baseline; opacity: 0; animation: abAparece .01s var(--d) forwards; }
+.ab-linhas i { flex: 1; border-bottom: 2px dotted var(--musgo); transform: translateY(-3px); }
+.ab-linhas b { font-weight: 400; color: var(--papel); }
+.ab-pronto { color: var(--ouro); }
+@keyframes abAparece { to { opacity: 1; } }
+
+.ab-entrar { position: absolute; bottom: 44px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 20px; font: inherit; font-size: 12px; letter-spacing: 0.12em; color: var(--papel); background: transparent; border: 1px solid var(--musgo); cursor: pointer; }
+.ab-entrar:hover { border-color: var(--ouro); color: var(--ouro); }
+.ab-assin { position: absolute; left: 40px; bottom: 32px; font-family: 'Bodoni Moda', 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 20px; }
+.ab-dom { position: absolute; right: 40px; bottom: 36px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); }
+
+@media (max-width: 700px) {
+  .ab-topo { left: 16px; right: 16px; top: 20px; font-size: 9px; }
+  .ab-glifo { font-size: 5.4px; line-height: 6px; }
+  .ab-creative { font-size: 11px; }
+  .ab-carga { margin-top: 40px; }
+  .ab-linhas { font-size: 10.5px; }
+  .ab-entrar { left: 16px; right: 16px; bottom: 72px; justify-content: center; font-size: 11px; }
+  .ab-assin { left: 16px; bottom: 22px; }
+  .ab-dom { right: 16px; bottom: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-logo, .ab-linhas > span { animation: none; opacity: 1; }
+  .ab-barra div { animation: none; width: 100%; }
+  .ab-cursor { animation: none; }
+}
+/* em telas de toque (celular), troca "pressione Enter" por "toque para entrar" */
+.ab-toque { display: none; }
+@media (hover: none) { .ab-teclado { display: none; } .ab-toque { display: inline; } }

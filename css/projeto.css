@@ -1,0 +1,51 @@
+/* =====================================================================
+   projeto.css — modelo das páginas de projeto (cases)
+   Topo com título e ficha técnica, janela "Visualizador" com as imagens,
+   e os links para o projeto anterior e o próximo.
+   ===================================================================== */
+
+.proj-topo { padding: 56px var(--margem) 72px; }
+.caminho { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 12px; letter-spacing: 0.08em; color: var(--broto); }
+.caminho a { color: var(--broto); }
+.caminho .barra { color: var(--musgo); }
+.proj-grid { display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 72px; margin-top: 48px; }
+.proj-texto { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.categoria { margin: 0; font-size: 12px; letter-spacing: 0.1em; color: var(--ouro); }
+.proj-texto h1 { font-size: clamp(56px, 8.9vw, 128px); line-height: 0.9; overflow-wrap: anywhere; }
+.subtitulo { margin: 0; font-family: var(--f-serifa); font-size: 40px; line-height: 1.1; color: var(--broto); }
+.proj-texto .resumo { margin: 8px 0 0; max-width: 600px; font-size: 15px; line-height: 1.7; color: var(--papel-2); }
+.resumo em { font-style: normal; color: var(--broto); }
+.ficha { margin: 0; align-self: end; border-bottom: 1px solid var(--musgo-escuro); }
+.ficha > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 14px 0; border-top: 1px solid var(--musgo-escuro); }
+.ficha dt { font-size: 12px; letter-spacing: 0.1em; color: var(--broto); }
+.ficha dd { margin: 0; font-size: 14px; line-height: 1.5; }
+
+/* janela com as imagens do projeto */
+.visualizador { width: min(100% - 2 * var(--margem), var(--largura-janela, 1100px)); margin: 0 auto; padding: 2px; }
+.visualizador .barra-titulo { font-size: 13px; padding: 0 6px 0 10px; }
+.visualizador .botoes-janela span { width: 18px; height: 16px; }
+.visualizador .pranchas { background: #000; }
+.visualizador .pranchas img, .visualizador .pranchas video { display: block; width: 100%; height: auto; }
+
+/* anterior / próximo */
+.outros { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 96px var(--margem) 64px; }
+.outros a { display: flex; flex-direction: column; gap: 12px; padding: 28px; text-decoration: none; border: 1px solid var(--musgo-escuro); }
+.outros a.proximo { align-items: flex-end; text-align: right; border-color: var(--musgo); background: rgba(94,107,51,0.12); }
+.outros .dir { font-size: 12px; letter-spacing: 0.1em; color: var(--broto); }
+.outros .proximo .dir { color: var(--ouro); }
+.outros .nome { font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: clamp(28px, 3vw, 44px); line-height: 1; filter: blur(0.9px); }
+
+@media (max-width: 1100px) {
+  .proj-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ficha { align-self: stretch; }
+}
+@media (max-width: 700px) {
+  .proj-topo { padding-top: 32px; padding-bottom: 48px; }
+  .proj-grid { margin-top: 28px; }
+  .subtitulo { font-size: 30px; }
+  .ficha > div { grid-template-columns: 110px minmax(0, 1fr); gap: 16px; }
+  .visualizador { width: 100%; }
+  .visualizador .barra-titulo { font-size: 11px; }
+  .outros { grid-template-columns: 1fr; gap: 16px; padding-top: 64px; }
+  .outros a.proximo { align-items: flex-start; text-align: left; }
+}
