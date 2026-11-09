@@ -1,0 +1,129 @@
+/* =====================================================================
+   fotos.css — páginas de fotografia (pasta fotos.jpg da Área de trabalho)
+   Estética: folha xerocada + roteiro datilografado + caneta esferográfica azul.
+   Fotos em preto e branco soltas na página, presas com clipe, e anotações
+   em azul ligando uma à outra.
+   ===================================================================== */
+.fotos { --papel-x: #F2F1EC; --tinta-x: #141414; --azul: #2340B8; --cinza-x: #6B6A64;
+  --f-maquina: 'Courier Prime', 'Courier New', Courier, monospace;
+  position: relative; color: var(--tinta-x); background-color: var(--papel-x);
+  /* grão de xerox: pontinhos de toner + leve sujeira nas bordas */
+  background-image:
+    radial-gradient(rgba(0,0,0,0.07) 0.6px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.04) 0.8px, transparent 1.3px),
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(0,0,0,0.06) 100%);
+  background-size: 3px 3px, 7px 5px, 100% 100%; }
+.fotos::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: url('../img/grao.png'); mix-blend-mode: multiply; opacity: 0.18; }
+.fotos > * { position: relative; z-index: 1; }
+.fotos { overflow-x: clip; }
+.maquina { font-family: var(--f-maquina); }
+.caneta { font-family: var(--f-mao); font-weight: 400; color: var(--azul); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* caminho no topo */
+.fotos-caminho { padding: 28px var(--margem) 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--f-maquina); font-size: 13px; color: var(--cinza-x); }
+.fotos-caminho a { color: var(--tinta-x); }
+.fotos-caminho .barra { margin: 0 6px; }
+
+/* cabeçalho: roteiro | título | índice */
+.fotos-cab { display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content; gap: 40px; align-items: center; padding: 56px var(--margem) 64px; }
+.roteiro { margin: 0; font-size: 13px; line-height: 1.75; white-space: nowrap; }
+.roteiro .cena { display: block; font-weight: 700; letter-spacing: 0.04em; }
+.roteiro .num { display: inline-block; width: 26px; color: var(--cinza-x); }
+.titulo-foto { position: relative; text-align: center; padding: 18px 40px; }
+.titulo-foto h1 { margin: 0; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.06em; font-size: clamp(72px, 10vw, 150px); line-height: 0.85; filter: blur(1.1px); }
+.titulo-foto h1 .ponto { color: var(--ouro); }
+.titulo-foto .rabisco { position: absolute; inset: -8px -24px; width: calc(100% + 48px); height: calc(100% + 16px); overflow: visible; pointer-events: none; }
+.titulo-foto .sub { display: block; margin-top: 16px; font-family: var(--f-maquina); font-size: 12px; letter-spacing: 0.3em; }
+/* tira de negativo: as fotos aparecem como negativo e "revelam" ao passar o mouse */
+.tira { position: relative; margin: 0 calc(var(--margem) - 8px) 64px; padding: 26px 0; background: #1A1610; transform: rotate(-0.6deg); overflow-x: auto; box-shadow: 0 10px 24px rgba(0,0,0,0.3); scrollbar-width: none; }
+.tira::-webkit-scrollbar { display: none; }
+.tira::before, .tira::after { content: ""; position: absolute; left: 0; width: max(100%, 2400px); height: 9px; background: repeating-linear-gradient(to right, transparent 0 10px, #F2F1EC 10px 18px, transparent 18px 26px); opacity: 0.85; }
+.tira::before { top: 7px; } .tira::after { bottom: 7px; }
+.quadros { display: flex; justify-content: center; gap: 12px; padding: 0 16px; width: max-content; min-width: 100%; box-sizing: border-box; }
+.quadro { position: relative; height: clamp(84px, 9.6vw, 138px); flex-shrink: 0; padding: 0; border: 1px solid #000; background: none; cursor: zoom-in; }
+.quadro img { display: block; height: 100%; width: auto; filter: invert(1) contrast(0.85); transition: filter .35s; }
+.fotos.pb .quadro img { filter: grayscale(1) invert(1) contrast(0.85); }
+.quadro::after { content: ""; position: absolute; inset: 0; background: #D9762B; mix-blend-mode: multiply; opacity: 0.85; transition: opacity .35s; pointer-events: none; }
+.quadro:hover::after, .quadro:focus-visible::after { opacity: 0; }
+.quadro:hover img, .quadro:focus-visible img { filter: none; }
+.fotos.pb .quadro:hover img, .fotos.pb .quadro:focus-visible img { filter: grayscale(1) contrast(1.05); }
+.quadro .marca { position: absolute; left: 6px; top: -18px; font-family: var(--f-maquina); font-size: 9px; letter-spacing: 0.12em; color: #E39A2A; white-space: nowrap; }
+.quadro .num { position: absolute; right: 4px; bottom: -18px; font-family: var(--f-maquina); font-size: 9px; color: #E39A2A; }
+.tira-dica { margin: -48px var(--margem) 56px; text-align: right; font-size: 18px; }
+
+/* colagem: fotos sobrepostas como num scrapbook. Posições em % de uma prancha de 1200 × 780 (celular: 400 × 1170) */
+.colagem { position: relative; margin: 0 auto; width: min(1200px, calc(100% - 2 * var(--margem))); aspect-ratio: var(--ar, 1200 / 780); }
+.colagem > * { position: absolute; left: var(--x); top: var(--y); width: var(--w); transform: rotate(var(--r, 0deg)); z-index: var(--z, 1); }
+.foto { margin: 0; }
+.foto button { display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in;
+  /* o miolo branco e fibroso do papel, que aparece onde ele foi rasgado */
+  background: #FCFBF7 url('../img/fotos/kit/papel.webp') 0 0 / 160px; clip-path: var(--rasgo-fora, none); }
+
+.foto .moldura { position: relative; display: block; padding: 12px 12px 14px; background: #F3EFE6 url('../img/fotos/kit/papel.webp') 0 0 / 320px; clip-path: var(--rasgo, none); }
+/* luz caindo sobre o papel (levemente ondulado) */
+.foto .moldura::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,0.35), transparent 35%, rgba(0,0,0,0.05) 70%, rgba(255,255,255,0.12)), radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.25), transparent 60%); mix-blend-mode: soft-light; }
+/* a foto impressa no papel: borda levemente afundada */
+.foto .moldura img { box-shadow: 0 0 0 1px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.1); }
+.foto { filter: drop-shadow(0 2px 2px rgba(0,0,0,0.14)) drop-shadow(0 8px 12px rgba(0,0,0,0.12)); transition: translate .35s cubic-bezier(.2,.8,.2,1), filter .35s; }
+/* ao passar o mouse a foto (junto com o clipe e o durex) descola levemente do papel: sobe e a sombra abre */
+.foto:hover, .foto:focus-within { translate: 0 -5px; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.12)) drop-shadow(0 18px 22px rgba(0,0,0,0.2)); }
+@media (prefers-reduced-motion: reduce) { .foto { transition: none; } .foto:hover, .foto:focus-within { translate: none; } }
+.foto img { display: block; width: 100%; height: auto; }
+/* ensaios em preto e branco (classe pb na página) */
+.fotos.pb .foto img { filter: grayscale(1) contrast(1.08); }
+/* prendedores: clipes de metal e pedaços de durex (PNG em img/fotos/kit) */
+.foto .clipe { position: absolute; z-index: 3; top: -26px; left: 18px; width: 28px; height: auto; pointer-events: none; filter: none; }
+.foto .clipe.d { left: auto; right: 22px; }
+.foto .clipe.deitado { top: 28%; left: -30px; transform: rotate(-72deg); }
+.foto .durex { position: absolute; z-index: 3; width: 96px; height: auto; pointer-events: none; filter: drop-shadow(0 1px 1.5px rgba(0,0,0,.18)); }
+.foto .durex.topo { top: -14px; left: 50%; margin-left: -48px; transform: rotate(-3deg); }
+.foto .durex.canto { top: -6px; left: -26px; transform: rotate(-38deg); width: 80px; }
+.foto .durex.canto-d { top: -6px; right: -26px; transform: rotate(36deg); width: 80px; }
+.colagem .caneta { margin: 0; font-size: 24px; line-height: 1.1; white-space: nowrap; }
+.colagem .doodle { display: block; width: 100%; height: auto; overflow: visible; pointer-events: none; filter: url(#tinta); }
+.colagem .caneta { filter: url(#tinta); }
+.colagem .topo-nota { text-align: center; font-size: 30px; }
+.colagem .so-cel { display: none; }
+.colagem .topo-nota svg { display: block; margin: 2px auto 0; }
+
+/* celular: outra composição, mais alta */
+@media (max-width: 800px) {
+  .colagem { width: calc(100% - 2 * var(--margem)); aspect-ratio: var(--mar, 400 / 1130); }
+  .colagem > * { left: var(--mx); top: var(--my); width: var(--mw); }
+  .colagem .caneta { font-size: 17px; white-space: normal; }
+  .colagem .topo-nota { font-size: 20px; }
+  .colagem .so-pc { display: none; }
+  .colagem .so-cel { display: block; }
+  .clipe { width: 15px; top: -18px; }
+  .foto .clipe.deitado { left: -20px; }
+  .durex { width: 64px; }
+  .durex.topo { margin-left: -32px; top: -10px; }
+  .durex.canto, .durex.canto-d { width: 56px; }
+  .tira-dica { margin-top: -50px; font-size: 15px; }
+}
+
+/* rodapé da folha */
+.fotos-fim { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin: 56px var(--margem) 0; padding: 22px 0 64px; border-top: 1px solid var(--tinta-x); font-family: var(--f-maquina); font-size: 13px; }
+.fotos-fim a { color: var(--tinta-x); }
+.fotos-fim a:hover { color: var(--azul); }
+
+/* foto grande ao clicar */
+.lupa { padding: 0; border: 0; background: transparent; max-width: min(92vw, 1400px); max-height: 92vh; overflow: visible; }
+.lupa::backdrop { background: rgba(242,241,236,0.94); }
+.lupa img { display: block; max-width: min(92vw, 1400px); max-height: 84vh; width: auto; height: auto; padding: 8px; background: #FFF; box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+.lupa .fechar { position: absolute; top: -14px; right: -14px; }
+.lupa p { margin: 12px 0 0; text-align: center; font-family: 'Courier Prime', 'Courier New', monospace; font-size: 13px; color: #141414; }
+
+@media (max-width: 1000px) {
+  .fotos-cab { grid-template-columns: 1fr; gap: 36px; padding-top: 40px; }
+  .titulo-foto { order: -1; }
+}
+
+
+/* nenhum texto quebra linha: título numa linha só, diminuindo com a tela */
+.titulo-foto h1 { white-space: nowrap; }
+@media (max-width: 800px) {
+  .fotos-caminho { font-size: 10px; letter-spacing: -0.02em; }
+  .fotos-caminho .barra { margin: 0 3px; }
+  .roteiro { font-size: 12px; }
+}

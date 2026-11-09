@@ -185,7 +185,7 @@
 .ex-desk[hidden] { display: none; }
 .dk-icones { position: absolute; left: 16px; top: 14px; bottom: 44px; display: flex; flex-direction: column; flex-wrap: wrap; gap: 12px 22px; align-content: flex-start; }
 .dk-ic { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 96px; padding: 4px; font: inherit; font-size: 12px; line-height: 1.25; color: #EDEBDD; text-shadow: 0 1px 0 #000; text-align: center; background: none; border: 0; cursor: pointer; }
-.dk-ic span { padding: 1px 3px; }
+.dk-ic span { padding: 1px 3px; overflow-wrap: anywhere; }
 .dk-ic:hover span, .dk-ic:focus-visible span { background: var(--musgo-escuro); outline: 1px dotted #FFFBEA; }
 .dk-ic:focus-visible { outline: none; }
 .dk-ic.fixo { cursor: default; opacity: 0.75; }
@@ -249,3 +249,8 @@
   .dk-jogo { left: 10px; right: auto; top: 120px; width: min(280px, calc(100% - 20px)); }
   .dk-termo { left: 10px; right: auto; top: 120px; width: min(290px, calc(100% - 20px)); }
 }
+
+/* pasta fotos.jpg: um ícone por ensaio */
+.dk-grade { display: flex; flex-wrap: wrap; gap: 14px; min-height: 120px; padding: 14px 10px; margin-top: 3px; align-content: flex-start; background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset -1px -1px 0 #FFFBEA; }
+.dk-ic.escuro { color: #171C10; text-shadow: none; text-decoration: none; }
+.dk-ic.escuro:hover span, .dk-ic.escuro:focus-visible span { background: #2E3619; color: #FFF; }
