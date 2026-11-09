@@ -48,7 +48,7 @@
   display: flex; flex-direction: column; align-items: center; justify-content: center; text-shadow: 0 0 6px rgba(163,179,92,0.35); }
 
 .ab-logo { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; font-weight: 400; }
-.ab-glifo { font-size: 8.5px; line-height: 9.5px; color: var(--musgo); visibility: hidden; }
+.ab-glifo { font-size: 11px; line-height: 12.2px; color: var(--musgo); visibility: hidden; }
 .ab-glifo.pronta { visibility: visible; }
 /* o logo se forma símbolo por símbolo (o script embrulha cada caractere em <i class="ab-c">) */
 .ab-c { font-style: normal; opacity: 0; animation: abSimbolo .18s steps(2) var(--d) forwards; }
@@ -56,7 +56,7 @@
 .ab-creative { font-size: 11px; font-weight: 500; letter-spacing: 0.62em; color: var(--broto); margin-right: -0.62em; opacity: 0; animation: abSobe .8s ease-out 3.9s forwards; }
 @keyframes abSobe { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-.ab-carga { margin-top: 30px; width: 500px; display: flex; flex-direction: column; gap: 10px; }
+.ab-carga { margin-top: 24px; width: 500px; display: flex; flex-direction: column; gap: 10px; }
 .ab-status { margin: 0; display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.06em; }
 .ab-cursor { color: var(--ouro); animation: abPisca 1s steps(1) infinite; }
 @keyframes abPisca { 50% { opacity: 0; } }
@@ -100,7 +100,7 @@
   .ab-pc { width: 150vw; left: 9vw; }
   /* conteúdo da tela desenhado menor, para as letras ficarem maiores no celular */
   .ab-tela-conteudo { width: 500px; height: 380px; }
-  .ab-glifo { font-size: 7.5px; line-height: 8.4px; }
+  .ab-glifo { font-size: 9px; line-height: 10px; }
   .ab-creative { font-size: 10px; }
   .ab-carga { margin-top: 18px; width: 440px; }
   .ab-linhas { min-height: 80px; }
