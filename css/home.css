@@ -42,12 +42,12 @@
 .tres a { margin-top: 6px; font-size: 11px; letter-spacing: 0.08em; color: var(--broto); text-decoration: none; }
 
 /* ---------- Faixa de marcas ---------- */
-.marcas { padding: 96px 0 40px; overflow: hidden; }
+.marcas { padding: 96px 0 40px; }
 .marcas h2 { margin: 0 0 28px; text-align: center; font-weight: 400; font-size: 12px; letter-spacing: 0.16em; color: var(--broto); }
+/* faixa reta, de uma ponta à outra da janela (mesmo em telas maiores que 1440px) */
 .faixa {
-  overflow: hidden; background: var(--papel); transform: rotate(-1.2deg); margin: 0 -20px; padding: 22px 0;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  overflow: hidden; background: var(--papel); padding: 22px 0;
+  width: 100vw; margin-left: calc(50% - 50vw);
 }
 .trilho { display: flex; width: max-content; animation: marquee 45s linear infinite; }
 @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
@@ -102,7 +102,7 @@
 .como .linhas { border-top: 1px solid var(--musgo); }
 .como .linha { display: grid; grid-template-columns: 240px minmax(0, 1fr) 80px; gap: 40px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--musgo-escuro); }
 .como .linha .rot { font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 44px; line-height: 1; color: var(--broto); filter: blur(0.9px); }
-.como .linha p { margin: 0; font-size: 19px; line-height: 1.5; letter-spacing: -0.01em; }
+.como .linha p { margin: 0; font-size: 18px; line-height: 1.5; letter-spacing: -0.01em; }
 .como .linha .num { font-size: 13px; color: var(--musgo); text-align: right; }
 .como .mais { margin: 28px 0 0; text-align: right; font-size: 13px; letter-spacing: 0.06em; }
 .como .mais a { color: var(--broto); text-decoration-color: var(--papel); text-underline-offset: 6px; }
