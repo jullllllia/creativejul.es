@@ -37,7 +37,7 @@
 .tres article:first-child { padding-left: 0; border-left: 0; }
 .tres article:last-child { padding-right: 0; }
 .unidade { margin: 0; font-size: 12px; color: rgb(127, 139, 78); }
-.tres h3 { margin: 0; font-family: var(--f-serifa); font-weight: 400; font-size: clamp(56px, 6.4vw, 92px); line-height: 0.9; letter-spacing: -0.01em; }
+.tres h3 { margin: 0; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: clamp(56px, 6.4vw, 92px); line-height: 0.9; filter: blur(1.2px); }
 .tres p.desc { margin: 0; font-size: 14px; line-height: 1.55; color: #A9AC97; }
 .tres a { margin-top: 6px; font-size: 11px; letter-spacing: 0.08em; color: var(--broto); text-decoration: none; }
 
@@ -101,7 +101,7 @@
 .como .secao-topo { border-top: 0; padding: 0 0 20px; }
 .como .linhas { border-top: 1px solid var(--musgo); }
 .como .linha { display: grid; grid-template-columns: 240px minmax(0, 1fr) 80px; gap: 40px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--musgo-escuro); }
-.como .linha .rot { font-family: var(--f-serifa); font-size: 44px; line-height: 1; letter-spacing: -0.01em; color: var(--broto); }
+.como .linha .rot { font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 44px; line-height: 1; color: var(--broto); filter: blur(0.9px); }
 .como .linha p { margin: 0; font-size: 19px; line-height: 1.5; letter-spacing: -0.01em; }
 .como .linha .num { font-size: 13px; color: var(--musgo); text-align: right; }
 .como .mais { margin: 28px 0 0; text-align: right; font-size: 13px; letter-spacing: 0.06em; }

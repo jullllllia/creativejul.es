@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://creativejul.es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&amp;family=IM+Fell+English&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
 <link rel="stylesheet" href="css/home.css">
 <script src="js/idioma.js" defer></script>
@@ -29,7 +29,13 @@ catch (e) { document.documentElement.classList.add('ab-mostrar'); }
 </head>
 <body>
 <div id="abertura" class="abertura" role="dialog" aria-modal="true" aria-labelledby="ab-titulo" data-en-label="Opening screen" aria-label="Tela de abertura">
+<div class="ab-escuro" aria-hidden="true"></div>
 <div class="ab-topo"><span>jules.OS 98 · BIOS v1.0</span><span data-en="MEMORY: 640K OK · PT / EN">MEMÓRIA: 640K OK · PT / EN</span></div>
+<div class="ab-pc">
+<img class="ab-pc-img" src="img/computador-boot.webp" width="1400" height="1042" alt="">
+<img class="ab-pc-final" src="img/computador.webp" width="1400" height="1042" alt="">
+<div class="ab-tela" style="left: 17.97%; top: 9.79%; width: 52.55%; height: 53.64%">
+<div class="ab-tela-conteudo">
 <h1 id="ab-titulo" class="ab-logo" aria-label="jules. creative"><span class="glifo ab-glifo" aria-hidden="true">             <span style="color: #5E6B33">.</span><span style="color: #A3B35C">-:</span>                  <span style="color: #A3B35C">.:::::</span>
             <span style="color: #A3B35C">.</span><span style="color: #EDEBDD">####</span><span style="color: #5E6B33">.</span>                 <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##*</span>
             <span style="color: #5E6B33">.</span><span style="color: #EDEBDD">*##+</span>                  <span style="color: #A3B35C">:</span><span style="color: #EDEBDD">###</span><span style="color: #A3B35C">.</span>
@@ -54,6 +60,9 @@ catch (e) { document.documentElement.classList.add('ab-mostrar'); }
 <span style="--d: 2.4s"><span data-en="&gt; loading play.exe">&gt; carregando play.exe</span> <i></i> <b>ok</b></span>
 <span style="--d: 3.2s"><span data-en="&gt; mounting C:\ code · D:\ design · P:\ play">&gt; montando C:\ code · D:\ design · P:\ play</span> <i></i> <b>ok</b></span>
 <span style="--d: 4.6s" class="ab-pronto" data-en="&gt; ready. welcome, visitor.">&gt; pronto. bem-vinda, pessoa visitante.</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 <button type="button" class="ab-entrar"><span class="ab-teclado" data-en="PRESS ENTER OR CLICK TO ENTER">PRESSIONE ENTER OU CLIQUE PARA ENTRAR</span><span class="ab-toque" data-en="TAP TO ENTER">TOQUE PARA ENTRAR</span> <span class="ponto" aria-hidden="true">↵</span></button>

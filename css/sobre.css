@@ -52,7 +52,8 @@
 .experiencia { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--musgo-escuro); }
 .experiencia li { display: grid; grid-template-columns: 200px minmax(0, 1fr) 280px 60px; gap: 32px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--musgo-escuro); }
 .experiencia .periodo { font-size: 13px; color: var(--broto); }
-.empresa { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-family: var(--f-serifa); font-size: 32px; line-height: 1.1; }
+.empresa { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 32px; line-height: 1.1; }
+.empresa > span:first-child { filter: blur(0.9px); }
 .empresa img { width: 44px; height: 20px; display: block; }
 .empresa .local { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--broto); margin-left: -4px; }
 .experiencia .descr { display: block; margin-top: 4px; font-size: 13px; color: #C9CBB8; }
@@ -62,7 +63,7 @@
 .duas-col h3 { margin: 0 0 12px; font-weight: 400; }
 .itens { border-top: 1px solid var(--musgo-escuro); }
 .itens > div { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--musgo-escuro); }
-.itens .nome { display: block; font-family: var(--f-serifa); font-size: 30px; line-height: 1.1; }
+.itens .nome { display: block; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 30px; line-height: 1.1; filter: blur(0.8px); }
 .itens .det { display: block; margin-top: 4px; font-size: 13px; color: #C9CBB8; }
 .itens .ano { font-size: 13px; color: var(--broto); white-space: nowrap; }
 
@@ -90,7 +91,7 @@
 .marca-logo .cores { position: absolute; right: 14px; bottom: 14px; display: flex; gap: 4px; }
 .marca-logo .cores span { width: 14px; height: 14px; }
 .marca-texto { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
-.marca-texto > p { margin: 0; font-family: var(--f-serifa); font-size: 34px; line-height: 1.22; }
+.marca-texto > p { margin: 0; font-family: var(--f-titulo); font-weight: 600; letter-spacing: -0.05em; font-size: 34px; line-height: 1.22; }
 .marca-texto .codigo { font-family: var(--f-mono); font-size: 20px; }
 .tres-notas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--musgo-escuro); font-size: 12px; line-height: 1.6; }
 .tres-notas > div { padding: 16px 16px 0; border-left: 1px solid var(--musgo-escuro); }

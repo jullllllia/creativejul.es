@@ -65,3 +65,35 @@
     aplicar(lerEscolha());
   });
 })();
+
+/* =====================================================================
+   Botão "voltar ao topo" (estilo Windows 98) — aparece em todas as
+   páginas depois que a pessoa desce um pouco.
+   ===================================================================== */
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'voltar-topo';
+    b.hidden = true;
+    // seta para cima desenhada em pixels
+    b.innerHTML = '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" shape-rendering="crispEdges">' +
+      '<path d="M7 3h2v1h1v1h1v1h1v1h1v2H10v4H6V9H3V7h1V6h1V5h1V4h1z" fill="#171C10"/></svg>';
+    function rotulo() {
+      var t = window.JULES_IDIOMA === 'en' ? 'Back to top' : 'Voltar ao topo';
+      b.setAttribute('aria-label', t);
+      b.title = t;
+    }
+    rotulo();
+    document.addEventListener('idioma', rotulo);
+    b.addEventListener('click', function () {
+      var suave = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+      window.scrollTo({ top: 0, behavior: suave ? 'smooth' : 'auto' });
+    });
+    document.body.appendChild(b);
+    // só aparece depois de descer mais ou menos uma tela
+    function checar() { b.hidden = window.scrollY < Math.min(600, window.innerHeight * 0.8); }
+    window.addEventListener('scroll', checar, { passive: true });
+    checar();
+  });
+})();

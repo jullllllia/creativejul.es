@@ -16,7 +16,7 @@
               en: 'Programming, web development, interfaces, automation, digital tools, technical studies and software projects.' },
       itens: [
         // este próprio site, com estrelinha e o aviso [você está aqui]
-        { nome: 'creativejul.es', tipo: { pt: 'Site', en: 'Website' }, ano: '2026', link: 'processo-criativo.html', estrela: true, aqui: { pt: '[você está aqui]', en: '[you are here]' } },
+        { nome: 'creativejul.es', tipo: { pt: 'Site', en: 'Website' }, ano: '2026', link: 'processo-criativo.html', estrela: true, aqui: { pt: '[vc está aqui]', en: '[you are here]' } },
         { nome: 'site_wyoming.html', tipo: { pt: 'Site', en: 'Website' }, ano: '2026', link: 'projetos/wyoming.html' } ] },
     { caminho: 'D:', nivel: 0, rotulo: { pt: 'DESIGN (D:)', en: 'DESIGN (D:)' }, titulo: { pt: 'Design', en: 'Design' },
       desc: { pt: 'Identidade visual, branding, direção de arte, comunicação, projetos editoriais e experiências gráficas.',

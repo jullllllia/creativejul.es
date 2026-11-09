@@ -1,72 +1,108 @@
 /* =====================================================================
    abertura.css — tela de "boot" do jules.OS, só na home
+   ---------------------------------------------------------------------
    Fica escondida por padrão. O script no <head> do index.html coloca a
    classe "ab-mostrar" no <html> quando é a primeira visita da sessão.
+   O carregamento acontece DENTRO da tela do computador; ao entrar, o
+   computador "voa" até o lugar dele na home (ver abertura.js).
    ===================================================================== */
 .abertura { display: none; }
 .ab-mostrar .abertura {
   position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px));
+  padding: 64px max(16px, env(safe-area-inset-right, 0px)) 120px max(16px, env(safe-area-inset-left, 0px));
   background: var(--noite) url('../img/luz.webp') top center / max(1440px, 100%) auto no-repeat;
   font-family: var(--f-mono); color: var(--papel); overflow: hidden; cursor: pointer;
+  transition: background-color .6s;
 }
 .ab-mostrar body { overflow: hidden; }
 /* mesmo fundo do site: granulação de filme (grao.png) ... */
 .abertura::before { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: url('../img/grao.png') repeat; mix-blend-mode: overlay; opacity: 0.4; }
-/* ... + pontinhos + linhas de monitor antigo por cima */
+  background: url('../img/grao.png') repeat; mix-blend-mode: overlay; opacity: 0.4; transition: opacity .6s; }
+/* ... + pontinhos por cima */
 .abertura::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(rgba(237,235,221,0.05) 0.6px, transparent 0.9px), radial-gradient(rgba(0,0,0,0.4) 0.9px, transparent 1.2px),
-    repeating-linear-gradient(to bottom, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 3px);
-  background-size: 2px 2px, 4px 3px, auto; }
+  background-image: radial-gradient(rgba(237,235,221,0.05) 0.6px, transparent 0.9px), radial-gradient(rgba(0,0,0,0.4) 0.9px, transparent 1.2px);
+  background-size: 2px 2px, 4px 3px; transition: opacity .6s; }
 .abertura > * { position: relative; z-index: 1; }
-.abertura > .ab-topo, .abertura > .ab-entrar, .abertura > .ab-dom { position: absolute; }
-.abertura.saindo { animation: abSai .45s ease-in forwards; }
-@keyframes abSai { to { opacity: 0; transform: scale(1.02); } }
+
+/* sala escura que vai "acendendo" junto com a barra de carregamento */
+.abertura > .ab-escuro { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #050703;
+  animation: abAcende 4.6s cubic-bezier(0.3, 0, 0.4, 1) forwards; }
+@keyframes abAcende { 0% { opacity: 1; } 6% { opacity: 0.9; } 8% { opacity: 0.97; } 12% { opacity: 0.85; } 40% { opacity: 0.6; } 100% { opacity: 0; } }
 
 .ab-topo { position: absolute; left: 40px; right: 40px; top: 32px; display: flex; justify-content: space-between; gap: 16px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); }
-.ab-logo { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; font-weight: 400; opacity: 0; animation: abSobe .8s ease-out .1s forwards; }
-.ab-glifo { font-size: 13px; line-height: 14.5px; color: var(--musgo); }
-.ab-creative { font-size: 14px; font-weight: 500; letter-spacing: 0.62em; color: var(--broto); margin-right: -0.62em; }
+
+/* ---------- o computador ---------- */
+/* largura: o que couber na tela, mantendo a proporção da imagem (1400 × 1042) */
+.ab-pc { position: relative; width: min(860px, 92vw, calc((100vh - 200px) * 1.3436)); transform-origin: 0 0; will-change: transform; }
+.ab-pc img { display: block; width: 100%; height: auto; }
+.ab-pc-img { filter: brightness(0.35); animation: abPcAcende 4.6s ease-out forwards; }
+@keyframes abPcAcende { to { filter: brightness(1); } }
+.ab-pc-final { position: absolute; inset: 0; opacity: 0; }
+
+/* a tela do monitor: o conteúdo é desenhado em 640 × 486 px e o script aumenta/diminui para caber */
+.ab-tela { position: absolute; overflow: hidden; border-radius: 14px; }
+.ab-tela::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px),
+              radial-gradient(ellipse at center, rgba(163,179,92,0.10), rgba(0,0,0,0.35) 90%); }
+.ab-tela-conteudo { position: absolute; left: 0; top: 0; width: 640px; height: 486px; transform-origin: 0 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-shadow: 0 0 6px rgba(163,179,92,0.35); }
+
+.ab-logo { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; font-weight: 400; }
+.ab-glifo { font-size: 8.5px; line-height: 9.5px; color: var(--musgo); visibility: hidden; }
+.ab-glifo.pronta { visibility: visible; }
+/* o logo se forma símbolo por símbolo (o script embrulha cada caractere em <i class="ab-c">) */
+.ab-c { font-style: normal; opacity: 0; animation: abSimbolo .18s steps(2) var(--d) forwards; }
+@keyframes abSimbolo { 0% { opacity: 0; } 50% { opacity: 1; filter: brightness(2); } 100% { opacity: 1; filter: none; } }
+.ab-creative { font-size: 11px; font-weight: 500; letter-spacing: 0.62em; color: var(--broto); margin-right: -0.62em; opacity: 0; animation: abSobe .8s ease-out 3.9s forwards; }
 @keyframes abSobe { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-.ab-carga { margin-top: 56px; width: min(560px, 100%); display: flex; flex-direction: column; gap: 14px; }
-.ab-status { margin: 0; display: flex; justify-content: space-between; gap: 12px; font-size: 13px; letter-spacing: 0.06em; }
+.ab-carga { margin-top: 30px; width: 500px; display: flex; flex-direction: column; gap: 10px; }
+.ab-status { margin: 0; display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.06em; }
 .ab-cursor { color: var(--ouro); animation: abPisca 1s steps(1) infinite; }
 @keyframes abPisca { 50% { opacity: 0; } }
-.ab-barra { height: 26px; padding: 3px; background: var(--noite-2); box-shadow: inset 1px 1px 0 #2C2A1E, inset -1px -1px 0 var(--musgo), inset 2px 2px 0 #0B0F07; }
-.ab-barra div { width: 0; height: 100%; background-image: repeating-linear-gradient(to right, var(--broto) 0px, var(--broto) 22px, transparent 22px, transparent 26px); animation: abCarrega 4.2s steps(21) .4s forwards; }
+.ab-barra { height: 20px; padding: 3px; background: var(--noite-2); box-shadow: inset 1px 1px 0 #2C2A1E, inset -1px -1px 0 var(--musgo), inset 2px 2px 0 #0B0F07; }
+.ab-barra div { width: 0; height: 100%; background-image: repeating-linear-gradient(to right, var(--broto) 0px, var(--broto) 18px, transparent 18px, transparent 21px); animation: abCarrega 4.2s steps(21) .4s forwards; }
 @keyframes abCarrega { to { width: 100%; } }
-.ab-linhas { display: flex; flex-direction: column; gap: 6px; min-height: 110px; font-size: 12px; color: var(--broto); }
+.ab-linhas { display: flex; flex-direction: column; gap: 4px; min-height: 92px; font-size: 11px; color: var(--broto); }
 .ab-linhas > span { display: flex; gap: 8px; align-items: baseline; opacity: 0; animation: abAparece .01s var(--d) forwards; }
 .ab-linhas i { flex: 1; border-bottom: 2px dotted var(--musgo); transform: translateY(-3px); }
 .ab-linhas b { font-weight: 400; color: var(--papel); }
 .ab-pronto { color: var(--ouro); }
 @keyframes abAparece { to { opacity: 1; } }
 
-.ab-entrar { position: absolute; bottom: 44px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 20px; font: inherit; font-size: 12px; letter-spacing: 0.12em; color: var(--papel); background: transparent; border: 1px solid var(--musgo); cursor: pointer; }
+/* ---------- botão de entrar e assinatura ---------- */
+.ab-entrar { position: absolute; bottom: 44px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 20px; font: inherit; font-size: 12px; letter-spacing: 0.12em; color: var(--papel); background: transparent; border: 1px solid var(--musgo); cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, opacity .4s; }
 /* hover: o botão fica todo dourado */
-.ab-entrar { transition: background .15s, color .15s, border-color .15s; }
 .ab-entrar:hover { background: var(--ouro); border-color: var(--ouro); color: #0B0F07; }
 .ab-entrar:hover .ponto { color: #0B0F07; }
 /* o botão já recebe o foco ao abrir (para o Enter funcionar); sem contorno extra por isso */
 .ab-entrar:focus-visible { outline: none; }
-.ab-dom { position: absolute; right: 40px; bottom: 36px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); }
+.ab-dom { position: absolute; right: 40px; bottom: 36px; font-size: 11px; letter-spacing: 0.1em; color: var(--broto); transition: opacity .4s; }
+.abertura > .ab-topo, .abertura > .ab-entrar, .abertura > .ab-dom { position: absolute; }
+/* em telas de toque (celular), troca "pressione Enter" por "toque para entrar" */
+.ab-toque { display: none; }
+@media (hover: none) { .ab-teclado { display: none; } .ab-toque { display: inline; } }
+
+/* ---------- saída: o fundo some e o computador vai até o lugar dele na home ---------- */
+.abertura.saindo { background-color: transparent; background-image: none; cursor: default; }
+.abertura.saindo::before, .abertura.saindo::after, .abertura.saindo > .ab-escuro { opacity: 0; transition: opacity .5s; }
+.abertura.saindo .ab-topo, .abertura.saindo .ab-entrar, .abertura.saindo .ab-dom { opacity: 0; }
+.abertura.saindo .ab-tela { opacity: 0; transition: opacity .35s; }
+.abertura.saindo .ab-pc-final { opacity: 1; transition: opacity .35s; }
+.abertura.saindo .ab-pc { transition: transform .9s cubic-bezier(0.65, 0, 0.25, 1); }
+.abertura.sumindo { opacity: 0; transition: opacity .45s; }
 
 @media (max-width: 700px) {
+  .ab-mostrar .abertura { padding-top: 56px; padding-bottom: 150px; }
   .ab-topo { left: 16px; right: 16px; top: 20px; font-size: 9px; }
-  .ab-glifo { font-size: 5.4px; line-height: 6px; }
-  .ab-creative { font-size: 11px; }
-  .ab-carga { margin-top: 40px; }
-  .ab-linhas { font-size: 10.5px; }
   .ab-entrar { left: 16px; right: 16px; bottom: 72px; justify-content: center; font-size: 11px; }
   .ab-dom { right: 16px; bottom: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ab-logo, .ab-linhas > span { animation: none; opacity: 1; }
+  .ab-linhas > span, .ab-c, .ab-creative { animation: none; opacity: 1; }
+  .ab-pc-img { animation: none; filter: none; }
   .ab-barra div { animation: none; width: 100%; }
   .ab-cursor { animation: none; }
+  .abertura > .ab-escuro { display: none; }
 }
-/* em telas de toque (celular), troca "pressione Enter" por "toque para entrar" */
-.ab-toque { display: none; }
-@media (hover: none) { .ab-teclado { display: none; } .ab-toque { display: inline; } }

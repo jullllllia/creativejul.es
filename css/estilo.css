@@ -21,7 +21,7 @@
   --bege: #D4CCB0;         /* janelas estilo 98 */
 
   --f-titulo: Helvetica, Arimo, Arial, sans-serif;
-  --f-serifa: 'IM Fell English', 'Times New Roman', serif;
+  --f-serifa: var(--f-titulo);   /* antes IM Fell English; agora tudo em Helvetica */
   --f-mono: 'JetBrains Mono', ui-monospace, monospace;
   --f-mao: 'Just Me Again Down Here', cursive;
   --f-janela: Tahoma, Verdana, sans-serif;
@@ -156,6 +156,24 @@ a.b98, a.b98:visited { color: #171C10; }
 .contato .dir { align-items: flex-end; justify-content: flex-start; gap: 18px; }  /* assinatura logo abaixo do jules. */
 .glifo-g { font-size: 9px; line-height: 10.5px; color: var(--musgo); }
 .assinatura { font-size: 13px; color: var(--musgo); white-space: nowrap; }
+
+/* Botão "voltar ao topo" — quadradinho estilo Windows 98 no canto da tela */
+.voltar-topo {
+  position: fixed; z-index: 50;
+  right: max(20px, env(safe-area-inset-right, 0px)); bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  width: 44px; height: 44px; padding: 0; border: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bege);
+  box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468, 0 6px 16px rgba(0,0,0,0.45);
+}
+.voltar-topo[hidden] { display: none; }
+.voltar-topo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(20,20,15,0.08) 0.7px, transparent 1.1px), radial-gradient(rgba(255,250,232,0.12) 0.8px, transparent 1.2px);
+  background-size: 3px 3px, 4px 5px; mix-blend-mode: multiply; }
+.voltar-topo:hover { background: #E2DBC2; }
+/* apertado: o botão "afunda" e a seta desce 1px */
+.voltar-topo:active { box-shadow: inset 1px 1px 0 #2C2A1E, inset -1px -1px 0 #FFFBEA, inset 2px 2px 0 #8C8468; }
+.voltar-topo:active svg { transform: translate(1px, 1px); }
 
 /* Animações e acessibilidade */
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
