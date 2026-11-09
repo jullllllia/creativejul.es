@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/home.css">
 <script src="js/idioma.js" defer></script>
 <script src="js/explorador.js" defer></script>
+<script src="js/area-de-trabalho.js" defer></script>
 <link rel="stylesheet" href="css/abertura.css">
 <script>
 /* tela de abertura: aparece só na primeira visita de cada sessão.
@@ -33,6 +34,7 @@ catch (e) { document.documentElement.classList.add('ab-mostrar'); }
 <div class="ab-topo"><span>jules.OS 98 · BIOS v1.0</span><span data-en="MEMORY: 640K OK · PT / EN">MEMÓRIA: 640K OK · PT / EN</span></div>
 <div class="ab-pc">
 <img class="ab-pc-img" src="img/computador-boot.webp" width="1400" height="1042" alt="">
+<span class="ab-teclas" aria-hidden="true"><span class="ab-tecla" style="--x:420;--y:901;--w:44;--h:22;--i:0"></span><span class="ab-tecla" style="--x:410;--y:878;--w:45;--h:20;--i:1"></span><span class="ab-tecla" style="--x:513;--y:901;--w:44;--h:22;--i:2"></span><span class="ab-tecla" style="--x:232;--y:878;--w:44;--h:20;--i:3"></span><span class="ab-tecla" style="--x:187;--y:901;--w:44;--h:22;--i:4"></span></span>
 <img class="ab-pc-final" src="img/computador.webp" width="1400" height="1042" alt="">
 <div class="ab-tela" style="left: 17.97%; top: 9.79%; width: 52.55%; height: 53.64%">
 <div class="ab-tela-conteudo">
@@ -144,7 +146,6 @@ catch (e) { document.documentElement.classList.add('ab-mostrar'); }
 <div class="endereco"><label for="ex-select" data-en="Address">Endereço</label><span class="campo afundado" data-endereco></span><span class="ex-combo"><select id="ex-select" class="ex-select"></select><span class="ex-combo-seta" aria-hidden="true"></span></span></div>
 <div class="ex-corpo">
 <nav class="ex-nav afundado" aria-label="Pastas" data-en-label="Folders">
-<span class="ex-raiz"><svg aria-hidden="true" width="20" height="16" viewBox="0 0 30 24"><rect x="1" y="5" width="28" height="14" rx="1" fill="#D4CCB0" stroke="#2C2A1E"/><circle cx="24" cy="12" r="1.6" fill="#A3B35C"/></svg><span data-en="My Computer">Meu computador</span></span>
 <div class="ex-pastas"></div>
 </nav>
 <div class="ex-direita afundado">
@@ -158,6 +159,33 @@ catch (e) { document.documentElement.classList.add('ab-mostrar'); }
 <div class="ex-lista">
 <div class="ex-cab" aria-hidden="true"><span data-en="Name">Nome</span><span data-en="Type">Tipo</span><span data-en="Year">Ano</span></div>
 <ul class="ex-arquivos"></ul>
+</div>
+<div class="ex-desk" hidden>
+<div class="dk-icones">
+<button type="button" class="dk-ic" data-abre="fotos"><svg aria-hidden="true" width="46" height="38" viewBox="0 0 30 24"><path d="M1 4h10l3 3h15v16H1z" fill="#E4B028" stroke="#6E5410"/><path d="M1 9h28" stroke="#F3D16E"/><rect x="9" y="11" width="12" height="9" fill="#FBF8EE" stroke="#6E5410" stroke-width=".6" transform="rotate(-6 15 15)"/><rect x="10.5" y="12.5" width="9" height="5" fill="#B07A4E" transform="rotate(-6 15 15)"/></svg><span>fotos.jpg</span></button>
+<button type="button" class="dk-ic" data-abre="jogo"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="1" y="1" width="14" height="14" fill="#171C10" stroke="#D4CCB0"/><rect x="3" y="9" width="2" height="2" fill="#A3B35C"/><rect x="5" y="9" width="2" height="2" fill="#A3B35C"/><rect x="7" y="9" width="2" height="2" fill="#A3B35C"/><rect x="7" y="7" width="2" height="2" fill="#EDEBDD"/><rect x="11" y="4" width="2" height="2" fill="#E4B028"/></svg><span>cobrinha.exe</span></button>
+<button type="button" class="dk-ic" data-abre="termo"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="1" y="1" width="14" height="14" fill="#FBF8EE" stroke="#2C2A1E"/><rect x="2" y="3" width="3" height="3" fill="#5E6B33"/><rect x="6.5" y="3" width="3" height="3" fill="#E4B028"/><rect x="11" y="3" width="3" height="3" fill="#8C8468"/><rect x="2" y="7" width="3" height="3" fill="#5E6B33"/><rect x="6.5" y="7" width="3" height="3" fill="#5E6B33"/><rect x="11" y="7" width="3" height="3" fill="#E4B028"/><rect x="2" y="11" width="12" height="2" fill="#D4CCB0"/></svg><span>termo.exe</span></button>
+<button type="button" class="dk-ic" data-caminho="MC"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 30 26"><rect x="3" y="2" width="24" height="16" fill="#D5CBA7" stroke="#2C2A1E"/><rect x="6" y="5" width="18" height="10" fill="#5E6B33"/><rect x="5" y="20" width="20" height="3" fill="#D5CBA7" stroke="#2C2A1E"/></svg><span data-en="My Computer">Meu computador</span></button>
+<div class="dk-ic fixo"><svg aria-hidden="true" width="34" height="40" viewBox="0 0 26 30"><path d="M5 8h16l-2 20H7z" fill="#D5CBA7" stroke="#2C2A1E"/><rect x="3" y="5" width="20" height="3" fill="#B9AE88" stroke="#2C2A1E"/><path d="M10 12v12M13 12v12M16 12v12" stroke="#8C8468"/></svg><span data-en="recycle bin">lixeira</span></div>
+</div>
+<div class="dk-jan dk-fotos" id="dk-w-fotos" hidden>
+<div class="dk-bt"><span>C:\Área de trabalho\fotos.jpg</span><span class="dk-bot"><button type="button" class="dk-x" data-fecha="dk-w-fotos" aria-label="Fechar" data-en-label="Close">×</button></span></div>
+<div class="dk-vazio"><svg aria-hidden="true" width="52" height="42" viewBox="0 0 30 24"><path d="M1 4h10l3 3h15v16H1z" fill="#E4B028" stroke="#6E5410"/><path d="M1 9h28" stroke="#F3D16E"/></svg><p data-en="the film rolls are still being developed.<br>come back soon :)">os rolos ainda estão sendo revelados.<br>volte em breve :)</p></div>
+<div class="dk-status"><span data-en="0 object(s)">0 objeto(s)</span></div>
+</div>
+<div class="dk-jan dk-jogo" id="dk-w-jogo" hidden>
+<div class="dk-bt"><span>cobrinha.exe</span><span class="dk-bot"><button type="button" class="dk-x" data-fecha="dk-w-jogo" aria-label="Fechar" data-en-label="Close">×</button></span></div>
+<div class="dk-placar"><span><span data-en="SCORE">PONTOS</span> <b id="cb-pts">0</b></span><span><span data-en="BEST">RECORDE</span> <b id="cb-rec">0</b></span></div>
+<div class="cb-tab" id="cb-tab" tabindex="0" aria-label="Jogo da cobrinha: use as setas do teclado ou deslize o dedo" data-en-label="Snake game: use the arrow keys or swipe"><canvas id="cb" width="320" height="320"></canvas><p class="cb-msg" id="cb-msg"></p></div>
+<div class="cb-ctrl"><button type="button" data-d="0,-1" aria-label="Cima" data-en-label="Up"><i class="tri c"></i></button><button type="button" data-d="-1,0" aria-label="Esquerda" data-en-label="Left"><i class="tri e"></i></button><button type="button" data-d="0,1" aria-label="Baixo" data-en-label="Down"><i class="tri b"></i></button><button type="button" data-d="1,0" aria-label="Direita" data-en-label="Right"><i class="tri d"></i></button></div>
+</div>
+<div class="dk-jan dk-termo" id="dk-w-termo" hidden>
+<div class="dk-bt"><span>termo.exe</span><span class="dk-bot"><button type="button" class="dk-x" data-fecha="dk-w-termo" aria-label="Fechar" data-en-label="Close">×</button></span></div>
+<div class="dk-placar"><span id="tm-info"></span><button type="button" class="tm-novo" id="tm-novo" data-en="new">nova</button></div>
+<div class="tm-grade" id="tm-grade" aria-live="polite"></div>
+<div class="tm-teclado" id="tm-teclado"></div>
+</div>
+<div class="dk-barra"><span class="dk-ini"><b>j.</b><span data-en="Start">Iniciar</span></span><span class="dk-hora" id="dk-hora">00:00</span></div>
 </div>
 </div>
 </div>

@@ -11,6 +11,16 @@
    ===================================================================== */
 (function () {
   var UNIDADES = [
+    // raiz: é onde o explorador abre por padrão. As unidades aparecem como arquivos clicáveis.
+    { caminho: 'MC', nivel: -1, rotulo: { pt: 'Meu computador', en: 'My Computer' }, titulo: { pt: 'Meu computador', en: 'My Computer' },
+      desc: { pt: 'Três unidades: code, design e play. Abra uma delas para ver as pastas e os projetos.',
+              en: 'Three drives: code, design and play. Open one to see its folders and projects.' },
+      itens: [
+        { nome: 'CODE (C:)', tipo: { pt: 'Disco local', en: 'Local disk' }, ano: '—', pasta: 'C:', disco: true },
+        { nome: 'DESIGN (D:)', tipo: { pt: 'Disco local', en: 'Local disk' }, ano: '—', pasta: 'D:', disco: true },
+        { nome: 'PLAY (P:)', tipo: { pt: 'Disco local', en: 'Local disk' }, ano: '—', pasta: 'P:', disco: true } ] },
+    // área de trabalho: o lado direito vira uma tela de computador (ver area-de-trabalho.js)
+    { caminho: 'DESK', nivel: -1, rotulo: { pt: 'Área de trabalho', en: 'Desktop' }, titulo: { pt: 'Área de trabalho', en: 'Desktop' }, desc: { pt: '', en: '' }, itens: [] },
     { caminho: 'C:', nivel: 0, rotulo: { pt: 'CODE (C:)', en: 'CODE (C:)' }, titulo: { pt: 'Code', en: 'Code' },
       desc: { pt: 'Programação, desenvolvimento web, interfaces, automações, ferramentas digitais, estudos técnicos e projetos de software.',
               en: 'Programming, web development, interfaces, automation, digital tools, technical studies and software projects.' },
@@ -57,7 +67,16 @@
   var ICONE_ESTRELA = '<svg aria-hidden="true" class="ex-estrela" width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="7" y="0" width="1" height="1" fill="#171C10"/><rect x="6" y="1" width="1" height="1" fill="#171C10"/><rect x="7" y="1" width="1" height="1" fill="#E4B028"/><rect x="8" y="1" width="1" height="1" fill="#171C10"/><rect x="6" y="2" width="1" height="1" fill="#171C10"/><rect x="7" y="2" width="1" height="1" fill="#E4B028"/><rect x="8" y="2" width="1" height="1" fill="#171C10"/><rect x="5" y="3" width="1" height="1" fill="#171C10"/><rect x="6" y="3" width="1" height="1" fill="#E4B028"/><rect x="7" y="3" width="1" height="1" fill="#E4B028"/><rect x="8" y="3" width="1" height="1" fill="#E4B028"/><rect x="9" y="3" width="1" height="1" fill="#171C10"/><rect x="1" y="4" width="1" height="1" fill="#171C10"/><rect x="2" y="4" width="1" height="1" fill="#171C10"/><rect x="3" y="4" width="1" height="1" fill="#171C10"/><rect x="4" y="4" width="1" height="1" fill="#171C10"/><rect x="5" y="4" width="1" height="1" fill="#171C10"/><rect x="6" y="4" width="1" height="1" fill="#E4B028"/><rect x="7" y="4" width="1" height="1" fill="#E4B028"/><rect x="8" y="4" width="1" height="1" fill="#E4B028"/><rect x="9" y="4" width="1" height="1" fill="#171C10"/><rect x="10" y="4" width="1" height="1" fill="#171C10"/><rect x="11" y="4" width="1" height="1" fill="#171C10"/><rect x="12" y="4" width="1" height="1" fill="#171C10"/><rect x="13" y="4" width="1" height="1" fill="#171C10"/><rect x="1" y="5" width="1" height="1" fill="#171C10"/><rect x="2" y="5" width="1" height="1" fill="#E4B028"/><rect x="3" y="5" width="1" height="1" fill="#E4B028"/><rect x="4" y="5" width="1" height="1" fill="#E4B028"/><rect x="5" y="5" width="1" height="1" fill="#E4B028"/><rect x="6" y="5" width="1" height="1" fill="#E4B028"/><rect x="7" y="5" width="1" height="1" fill="#E4B028"/><rect x="8" y="5" width="1" height="1" fill="#E4B028"/><rect x="9" y="5" width="1" height="1" fill="#E4B028"/><rect x="10" y="5" width="1" height="1" fill="#E4B028"/><rect x="11" y="5" width="1" height="1" fill="#E4B028"/><rect x="12" y="5" width="1" height="1" fill="#E4B028"/><rect x="13" y="5" width="1" height="1" fill="#171C10"/><rect x="2" y="6" width="1" height="1" fill="#171C10"/><rect x="3" y="6" width="1" height="1" fill="#E4B028"/><rect x="4" y="6" width="1" height="1" fill="#E4B028"/><rect x="5" y="6" width="1" height="1" fill="#E4B028"/><rect x="6" y="6" width="1" height="1" fill="#E4B028"/><rect x="7" y="6" width="1" height="1" fill="#E4B028"/><rect x="8" y="6" width="1" height="1" fill="#E4B028"/><rect x="9" y="6" width="1" height="1" fill="#E4B028"/><rect x="10" y="6" width="1" height="1" fill="#E4B028"/><rect x="11" y="6" width="1" height="1" fill="#E4B028"/><rect x="12" y="6" width="1" height="1" fill="#171C10"/><rect x="3" y="7" width="1" height="1" fill="#171C10"/><rect x="4" y="7" width="1" height="1" fill="#E4B028"/><rect x="5" y="7" width="1" height="1" fill="#E4B028"/><rect x="6" y="7" width="1" height="1" fill="#E4B028"/><rect x="7" y="7" width="1" height="1" fill="#E4B028"/><rect x="8" y="7" width="1" height="1" fill="#E4B028"/><rect x="9" y="7" width="1" height="1" fill="#E4B028"/><rect x="10" y="7" width="1" height="1" fill="#E4B028"/><rect x="11" y="7" width="1" height="1" fill="#171C10"/><rect x="4" y="8" width="1" height="1" fill="#171C10"/><rect x="5" y="8" width="1" height="1" fill="#E4B028"/><rect x="6" y="8" width="1" height="1" fill="#E4B028"/><rect x="7" y="8" width="1" height="1" fill="#E4B028"/><rect x="8" y="8" width="1" height="1" fill="#E4B028"/><rect x="9" y="8" width="1" height="1" fill="#E4B028"/><rect x="10" y="8" width="1" height="1" fill="#171C10"/><rect x="4" y="9" width="1" height="1" fill="#171C10"/><rect x="5" y="9" width="1" height="1" fill="#E4B028"/><rect x="6" y="9" width="1" height="1" fill="#E4B028"/><rect x="7" y="9" width="1" height="1" fill="#E4B028"/><rect x="8" y="9" width="1" height="1" fill="#E4B028"/><rect x="9" y="9" width="1" height="1" fill="#E4B028"/><rect x="10" y="9" width="1" height="1" fill="#171C10"/><rect x="3" y="10" width="1" height="1" fill="#171C10"/><rect x="4" y="10" width="1" height="1" fill="#E4B028"/><rect x="5" y="10" width="1" height="1" fill="#E4B028"/><rect x="6" y="10" width="1" height="1" fill="#E4B028"/><rect x="7" y="10" width="1" height="1" fill="#171C10"/><rect x="8" y="10" width="1" height="1" fill="#E4B028"/><rect x="9" y="10" width="1" height="1" fill="#E4B028"/><rect x="10" y="10" width="1" height="1" fill="#E4B028"/><rect x="11" y="10" width="1" height="1" fill="#171C10"/><rect x="3" y="11" width="1" height="1" fill="#171C10"/><rect x="4" y="11" width="1" height="1" fill="#E4B028"/><rect x="5" y="11" width="1" height="1" fill="#E4B028"/><rect x="6" y="11" width="1" height="1" fill="#171C10"/><rect x="8" y="11" width="1" height="1" fill="#171C10"/><rect x="9" y="11" width="1" height="1" fill="#E4B028"/><rect x="10" y="11" width="1" height="1" fill="#E4B028"/><rect x="11" y="11" width="1" height="1" fill="#171C10"/><rect x="2" y="12" width="1" height="1" fill="#171C10"/><rect x="3" y="12" width="1" height="1" fill="#E4B028"/><rect x="4" y="12" width="1" height="1" fill="#E4B028"/><rect x="5" y="12" width="1" height="1" fill="#171C10"/><rect x="9" y="12" width="1" height="1" fill="#171C10"/><rect x="10" y="12" width="1" height="1" fill="#E4B028"/><rect x="11" y="12" width="1" height="1" fill="#E4B028"/><rect x="12" y="12" width="1" height="1" fill="#171C10"/><rect x="2" y="13" width="1" height="1" fill="#171C10"/><rect x="3" y="13" width="1" height="1" fill="#171C10"/><rect x="4" y="13" width="1" height="1" fill="#171C10"/><rect x="10" y="13" width="1" height="1" fill="#171C10"/><rect x="11" y="13" width="1" height="1" fill="#171C10"/><rect x="12" y="13" width="1" height="1" fill="#171C10"/></svg>';
   var ICONE_ARQ = '<svg aria-hidden="true" width="16" height="18" viewBox="0 0 24 28"><path d="M2 1h14l6 6v20H2z" fill="#FFFFFF" stroke="#2C2A1E"/><path d="M5 12h14M5 16h14M5 20h10" stroke="#5E6B33"/></svg>';
 
-  var aberta = 'D:\\identidade-e-marca';
+  var ICONE_MC = '<svg aria-hidden="true" width="20" height="16" viewBox="0 0 30 24"><rect x="1" y="5" width="28" height="14" rx="1" fill="#D4CCB0" stroke="#2C2A1E"/><circle cx="24" cy="12" r="1.6" fill="#A3B35C"/></svg>';
+  var ICONE_DESK = '<svg aria-hidden="true" width="20" height="16" viewBox="0 0 30 24"><rect x="2" y="3" width="26" height="16" fill="#5E6B33" stroke="#2C2A1E"/><rect x="2" y="19" width="26" height="3" fill="#D4CCB0" stroke="#2C2A1E"/></svg>';
+
+  // o explorador sempre começa em "Meu computador"
+  var aberta = 'MC';
+
+  // em qual unidade a pasta aberta está (C:, D:, P:) — só essa mostra as subpastas na árvore
+  function unidadeDe(c) { return (c === 'MC' || c === 'DESK') ? '' : c.split('\\')[0]; }
+  function nomeDe(u) { return u.rotulo ? t(u.rotulo) : u.caminho.split('\\').pop(); }
+  function visivelNaArvore(u) { return u.nivel !== 1 || unidadeDe(u.caminho) === unidadeDe(aberta); }
 
   function t(obj) { return obj[window.JULES_IDIOMA === 'en' ? 'en' : 'pt']; }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -66,24 +85,31 @@
     var raiz = document.getElementById('explorador');
     if (!raiz) return;
     var atual = UNIDADES.filter(function (u) { return u.caminho === aberta; })[0] || UNIDADES[0];
-    var endereco = atual.caminho.indexOf('\\') > -1 ? atual.caminho : atual.caminho + '\\';
+    var endereco = atual.caminho === 'MC' ? t(atual.rotulo) : atual.caminho === 'DESK' ? 'C:\\' + t(atual.rotulo) :
+      (atual.caminho.indexOf('\\') > -1 ? atual.caminho : atual.caminho + '\\');
+    var desk = atual.caminho === 'DESK';
+    var direita = raiz.querySelector('.ex-direita');
+    direita.classList.toggle('desk-on', desk);
+    raiz.querySelector('.ex-desk').hidden = !desk;
 
     raiz.querySelectorAll('[data-endereco]').forEach(function (el) { el.textContent = endereco; });
 
     // 1. lista de unidades e pastas
-    raiz.querySelector('.ex-pastas').innerHTML = UNIDADES.map(function (u) {
-      var nome = u.rotulo ? t(u.rotulo) : u.caminho.split('\\').pop();
-      return '<button type="button" class="ex-pasta nivel-' + u.nivel + '" aria-pressed="' + (u.caminho === aberta) + '" data-caminho="' + esc(u.caminho) + '">' +
-        (u.nivel === 0 ? ICONE_DISCO : ICONE_PASTA) + '<span>' + esc(nome) + '</span></button>';
+    // ordem: Área de trabalho, Meu computador, unidades (e as subpastas só da unidade aberta)
+    var ordem = [UNIDADES[1], UNIDADES[0]].concat(UNIDADES.slice(2));
+    raiz.querySelector('.ex-pastas').innerHTML = ordem.filter(visivelNaArvore).map(function (u) {
+      var icone = u.caminho === 'MC' ? ICONE_MC : u.caminho === 'DESK' ? ICONE_DESK : (u.nivel === 0 ? ICONE_DISCO : ICONE_PASTA);
+      var classe = u.nivel === -1 ? 'raiz' : 'nivel-' + u.nivel;
+      return '<button type="button" class="ex-pasta ' + classe + '" aria-pressed="' + (u.caminho === aberta) + '" data-caminho="' + esc(u.caminho) + '">' +
+        icone + '<span>' + esc(nomeDe(u)) + '</span></button>' + (u.caminho === 'DESK' ? '<span class="ex-sep" aria-hidden="true"></span>' : '');
     }).join('');
 
     // 1b. celular: a lista de pastas vira um menu suspenso no campo "Endereço"
     var sel = raiz.querySelector('.ex-select');
     if (sel) {
-      sel.innerHTML = UNIDADES.map(function (u) {
-        var nome = u.rotulo ? t(u.rotulo) : u.caminho.split('\\').pop();
-        var recuo = u.nivel ? '\u00A0\u00A0\u00A0\u00A0└ ' : '';
-        return '<option value="' + esc(u.caminho) + '"' + (u.caminho === aberta ? ' selected' : '') + '>' + recuo + esc(nome) + '</option>';
+      sel.innerHTML = [UNIDADES[1], UNIDADES[0]].concat(UNIDADES.slice(2)).filter(visivelNaArvore).map(function (u) {
+        var recuo = u.nivel === 0 ? '\u00A0\u00A0' : u.nivel === 1 ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0└ ' : '';
+        return '<option value="' + esc(u.caminho) + '"' + (u.caminho === aberta ? ' selected' : '') + '>' + recuo + esc(nomeDe(u)) + '</option>';
       }).join('');
     }
 
@@ -94,13 +120,14 @@
     // 3. arquivos
     // dentro de uma subpasta: primeira linha "voltar" (pasta acima), como no Windows
     var acima = '';
-    if (atual.nivel > 0) {
-      var pai = atual.caminho.split('\\')[0];
-      acima = '<li class="ex-acima"><button type="button" class="ex-linha ativa" data-caminho="' + esc(pai) + '"><span class="ex-nome">' + ICONE_PASTA +
-        '<span>.. <small>' + (window.JULES_IDIOMA === 'en' ? '(back to ' : '(voltar para ') + esc(pai) + ')</small></span></span><span class="ex-tipo"></span><span class="ex-ano"></span></button></li>';
+    if (atual.nivel >= 0) {
+      var pai = atual.nivel > 0 ? atual.caminho.split('\\')[0] : 'MC';
+      var nomePai = pai === 'MC' ? t(UNIDADES[0].rotulo) : pai;
+      acima = '<li class="ex-acima"><button type="button" class="ex-linha ativa" data-caminho="' + esc(pai) + '"><span class="ex-nome">' + (pai === 'MC' ? ICONE_MC : ICONE_PASTA) +
+        '<span>.. <small>' + (window.JULES_IDIOMA === 'en' ? '(back to ' : '(voltar para ') + esc(nomePai) + ')</small></span></span><span class="ex-tipo"></span><span class="ex-ano"></span></button></li>';
     }
     raiz.querySelector('.ex-arquivos').innerHTML = acima + atual.itens.map(function (it) {
-      var icone = it.pasta ? ICONE_PASTA : (it.estrela ? ICONE_ESTRELA : ICONE_ARQ);
+      var icone = it.disco ? ICONE_DISCO : it.pasta ? ICONE_PASTA : (it.estrela ? ICONE_ESTRELA : ICONE_ARQ);
       var aqui = it.aqui ? ' <span class="ex-aqui">' + esc(t(it.aqui)) + '</span>' : '';
       var conteudo = '<span class="ex-nome">' + icone + '<span>' + esc(it.nome) + aqui + '</span></span>' +
         '<span class="ex-tipo">' + esc(t(it.tipo)) + '</span><span class="ex-ano">' + esc(it.ano) + '</span>';
@@ -109,7 +136,8 @@
       return '<li><span class="ex-linha">' + conteudo + '</span></li>';
     }).join('');
 
-    raiz.querySelector('.ex-qtd').textContent = atual.itens.length + (window.JULES_IDIOMA === 'en' ? ' object(s)' : ' objeto(s)');
+    var qtd = desk ? 5 : atual.itens.length;
+    raiz.querySelector('.ex-qtd').textContent = qtd + (window.JULES_IDIOMA === 'en' ? ' object(s)' : ' objeto(s)');
   }
 
   document.addEventListener('click', function (e) {
@@ -121,6 +149,8 @@
   // Links que abrem uma pasta específica, ex.: index.html#pasta-code
   // (usado nos botões OK das conquistas, na página Sobre)
   var ATALHOS = {
+    'pastas': 'MC',
+    'area-de-trabalho': 'DESK',
     'pasta-code': 'C:',
     'pasta-design': 'D:',
     'pasta-identidade-e-marca': 'D:\\identidade-e-marca',
@@ -143,4 +173,12 @@
   document.addEventListener('idioma', desenhar);
   document.addEventListener('DOMContentLoaded', function () { desenhar(); abrirPeloEndereco(); });
   window.addEventListener('hashchange', abrirPeloEndereco);
+  // "Abrir as pastas", "Projetos" no menu etc. levam pra #pastas: mesmo se o endereço já for #pastas,
+  // o explorador volta para "Meu computador"
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href$="#pastas"]');
+    if (!a || e.target.closest('#explorador')) return;
+    aberta = 'MC';
+    desenhar();
+  });
 })();

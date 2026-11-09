@@ -40,6 +40,16 @@
 .ab-pc-img { filter: brightness(0.35); animation: abPcAcende 4.6s ease-out forwards; }
 @keyframes abPcAcende { to { filter: brightness(1); } }
 .ab-pc-final { position: absolute; inset: 0; opacity: 0; }
+/* teclas J U L E S apertando em loop: cada tecla é um recorte da própria foto que afunda e escurece */
+.ab-teclas { position: absolute; inset: 0; pointer-events: none; filter: brightness(0.35); animation: abPcAcende 4.6s ease-out forwards; }
+.ab-tecla { position: absolute; left: calc(var(--x) / 1400 * 100%); top: calc(var(--y) / 1042 * 100%); width: calc(var(--w) / 1400 * 100%); height: calc(var(--h) / 1042 * 100%);
+  border-radius: 5px; background: url('../img/computador-boot.webp') no-repeat;
+  background-size: var(--ab-w) auto; background-position: calc(var(--ab-w) * var(--x) / -1400) calc(var(--ab-w) * var(--y) / -1400);
+  animation: abTecla 3.2s calc(var(--i) * 0.26s + 1s) infinite; }
+.ab-tecla::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgba(20,18,8,0); box-shadow: inset 0 0 0 rgba(0,0,0,0); animation: inherit; animation-name: abTeclaSombra; }
+@keyframes abTecla { 0%, 14%, 100% { transform: none; } 4%, 9% { transform: translateY(6%); } }
+@keyframes abTeclaSombra { 0%, 14%, 100% { background: rgba(20,18,8,0); box-shadow: inset 0 0 0 rgba(0,0,0,0); }
+  4%, 9% { background: rgba(20,18,8,0.16); box-shadow: inset 0 2px 4px rgba(0,0,0,0.35); } }
 
 /* a tela do monitor: o conteúdo é desenhado em 640 × 486 px e o script aumenta/diminui para caber */
 .ab-tela { position: absolute; overflow: hidden; border-radius: 14px; }
@@ -92,6 +102,7 @@
 .abertura.saindo .ab-topo, .abertura.saindo .ab-entrar, .abertura.saindo .ab-dom { opacity: 0; }
 .abertura.saindo .ab-tela { opacity: 0; transition: opacity .35s; }
 .abertura.saindo .ab-pc-final { opacity: 1; transition: opacity .35s; }
+.abertura.saindo .ab-teclas { opacity: 0; transition: opacity .35s; }
 .abertura.saindo .ab-pc { transition: transform .9s cubic-bezier(0.65, 0, 0.25, 1); }
 .abertura.sumindo { opacity: 0; transition: opacity .45s; }
 
@@ -99,7 +110,7 @@
   .ab-mostrar .abertura { padding-top: 56px; padding-bottom: 150px; }
   /* celular: o computador fica bem maior (passa um pouco das bordas) e o monitor fica centralizado.
      O centro do monitor está a ~44% da largura da imagem, por isso o deslocamento de 9vw. */
-  .ab-pc { width: 150vw; left: 9vw; }
+  .ab-pc { --ab-w: 150vw; width: 150vw; left: 9vw; }
   /* conteúdo da tela desenhado menor, para as letras ficarem maiores no celular */
   .ab-tela-conteudo { width: 500px; height: 380px; }
   .ab-glifo { font-size: 9px; line-height: 10px; }
@@ -112,7 +123,8 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .ab-linhas > span, .ab-c, .ab-creative { animation: none; opacity: 1; }
-  .ab-pc-img { animation: none; filter: none; }
+  .ab-pc-img, .ab-teclas { animation: none; filter: none; }
+  .ab-tecla, .ab-tecla::after { animation: none; }
   .ab-barra div { animation: none; width: 100%; }
   .ab-cursor { animation: none; }
   .abertura > .ab-escuro { display: none; }
