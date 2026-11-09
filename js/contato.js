@@ -24,8 +24,8 @@
   var PRAZOS = { pt: ['Sem pressa', 'Este mês', 'Urgente'], en: ['No rush', 'This month', 'Urgent'] };
   var CANAIS = {
     email: { icone: '@', link: null,
-      pt: { nome: 'E-mail', porque: 'Pra projetos, o e-mail é o melhor: dá pra mandar referências e briefing, e eu respondo com calma e com orçamento.', acao: 'Enviar e-mail', obs: 'O botão abre o Gmail já com tudo preenchido. Se preferir, copie a mensagem e envie para ' + EMAIL + '.' },
-      en: { nome: 'Email', porque: 'For projects, email is best: you can send references and a brief, and I reply calmly, with a quote.', acao: 'Send email', obs: 'The button opens Gmail with everything filled in. If you prefer, copy the message and send it to ' + EMAIL + '.' } },
+      pt: { nome: 'E-mail', nomeZap: 'WhatsApp ou e-mail', porqueZap: 'Pra projetos, escolha o que for melhor pra você: o WhatsApp é mais rápido pra conversar e o e-mail é melhor pra mandar referências e briefing.', zap: 'Chamar no WhatsApp', porque: 'Pra projetos, o e-mail é o melhor: dá pra mandar referências e briefing, e eu respondo com calma e com orçamento.', acao: 'Enviar e-mail', obs: 'O botão abre o Gmail já com tudo preenchido. Se preferir, copie a mensagem e envie para ' + EMAIL + '.' },
+      en: { nome: 'Email', nomeZap: 'WhatsApp or email', porqueZap: 'For projects, pick what works best for you: WhatsApp is faster to chat, and email is better for sending references and a brief.', zap: 'Message on WhatsApp', porque: 'For projects, email is best: you can send references and a brief, and I reply calmly, with a quote.', acao: 'Send email', obs: 'The button opens Gmail with everything filled in. If you prefer, copy the message and send it to ' + EMAIL + '.' } },
     linkedin: { icone: 'in', link: 'https://www.linkedin.com/in/julliaht/',
       pt: { nome: 'LinkedIn', porque: 'Pra vagas e propostas, o LinkedIn é o melhor lugar: lá está meu histórico completo e eu respondo recrutadores por mensagem.', acao: 'Abrir meu LinkedIn', obs: 'Copie a mensagem e cole na conversa do LinkedIn.' },
       en: { nome: 'LinkedIn', porque: 'For openings and offers, LinkedIn is the best place: my full history is there and I answer recruiters by message.', acao: 'Open my LinkedIn', obs: 'Copy the message and paste it into the LinkedIn chat.' } },
@@ -80,9 +80,18 @@
       // etapa 3
       if (st.op !== null) {
         var c = CANAIS[OPCOES[st.op].canal], m = textoMensagem();
-        $('.ct-icone').textContent = c.icone;
-        $('.ct-canal-nome').textContent = c[l].nome;
-        $('.ct-porque').textContent = c[l].porque;
+        // projetos (e-mail) com WhatsApp configurado: mostra as duas opções
+        var temZap = OPCOES[st.op].canal === 'email' && !!window.JULES_WHATSAPP;
+        $('.ct-icone').textContent = temZap ? '@ ✆' : c.icone;
+        $('.ct-canal-nome').textContent = temZap ? c[l].nomeZap : c[l].nome;
+        $('.ct-porque').textContent = temZap ? c[l].porqueZap : c[l].porque;
+        var zap = $('.ct-zap');
+        zap.hidden = !temZap;
+        if (temZap) {
+          zap.textContent = c[l].zap;
+          // no WhatsApp vai só a mensagem (sem a linha de "Assunto")
+          zap.href = 'https://wa.me/' + window.JULES_WHATSAPP + '?text=' + encodeURIComponent(m.corpo);
+        }
         $('.ct-msg').textContent = m.completa;
         var ir = $('.ct-ir');
         ir.textContent = c[l].acao;

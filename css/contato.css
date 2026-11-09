@@ -5,9 +5,9 @@
 .ct-topo { position: relative; padding: 88px var(--margem) 64px; }
 .ct-h1 { margin-top: 28px; font-size: clamp(56px, 8.9vw, 128px); line-height: 0.95; }
 .ct-intro { max-width: 540px; margin: 28px 0 0; font-size: 16px; line-height: 1.6; }
-.ct-nota { position: absolute; right: 8%; top: 300px; width: 330px; height: 150px; pointer-events: none; }
-.ct-nota svg { position: absolute; left: 0; top: 0; overflow: visible; transform: rotate(20deg) scaleX(-1); filter: url(#giz-fino); }
-.ct-nota p { position: absolute; left: 64px; top: 40px; margin: 0; font-size: 26px; transform: rotate(-5deg); white-space: nowrap; }
+.ct-nota { position: absolute; right: 8%; top: 284px; width: 300px; height: 136px; pointer-events: none; }
+.ct-nota svg { position: absolute; left: 0; top: 0; width: 110px; height: 102px; overflow: visible; transform: rotate(20deg) scaleX(-1); filter: url(#giz-fino); }
+.ct-nota p { position: absolute; left: 56px; top: 34px; margin: 0; font-size: 23px; transform: rotate(-5deg); white-space: nowrap; }
 
 .ct-janela { width: min(100% - 2 * var(--margem), 906px); margin: 0 auto; }
 .ct-janela .barra-titulo { font-size: 13px; }
@@ -37,7 +37,7 @@
 .ct-canal { display: flex; gap: 16px; align-items: center; padding: 16px; background: #EFE8D2; box-shadow: inset 0 0 0 1px #8C8468; }
 .ct-canal b { display: block; font-size: 18px; }
 .ct-canal span span { display: block; margin-top: 4px; font-size: 13px; color: #3E3A2A; }
-.ct-icone { flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #2E3619; color: var(--ouro); font-family: var(--f-mono); font-weight: 700; font-size: 18px; }
+.ct-icone { flex-shrink: 0; min-width: 44px; padding: 0 6px; white-space: nowrap; width: auto; height: 44px; display: flex; align-items: center; justify-content: center; background: #2E3619; color: var(--ouro); font-family: var(--f-mono); font-weight: 700; font-size: 18px; }
 .ct-msg { margin: 0; max-height: 220px; overflow: auto; padding: 12px; white-space: pre-wrap; word-break: break-word; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.6; color: #171C10; background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset 2px 2px 0 #4A4430, inset -1px -1px 0 #FFFBEA; }
 .ct-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
 .ct-acoes .b98 { min-height: 40px; padding: 0 22px; font-size: 14px; }
@@ -62,3 +62,7 @@
   .ct-opcoes { grid-template-columns: 1fr; }
   .ct-janela { width: calc(100% - 2 * var(--margem)); }
 }
+
+/* botão do WhatsApp em verde, para diferenciar do e-mail */
+.b98.ct-zap { background: #CFE0B4; }
+.b98.ct-zap:hover { background: #BFD49E; }

@@ -5,18 +5,19 @@
 /* ---------- Abertura (hero) ---------- */
 .hero {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 740px);
-  align-items: start; gap: 24px;
-  padding: 0 clamp(16px, 2vw, 28px) 0 var(--margem);
-  min-height: 860px;
+  align-items: center; gap: 24px;   /* computador centralizado na altura do texto */
+  padding: 72px clamp(16px, 2vw, 28px) 72px var(--margem);
+  min-height: 820px;
 }
-.hero-texto { padding-top: 142px; max-width: 560px; }
+.hero-texto { max-width: 560px; }
 .hero h1 { font-size: clamp(64px, 9.7vw, 140px); line-height: 0.85; }
 .hero p { margin: 40px 0 0; max-width: 492px; font-size: 16px; line-height: 1.5; color: var(--papel-2); }
 .hero-acoes { display: flex; flex-wrap: wrap; gap: 20px 30px; align-items: center; margin-top: 56px; }
 .hero-acoes .link { font-size: 14px; text-underline-offset: 6px; }
+.hero-acoes .botao { min-height: 42px; padding: 0 18px; font-size: 15px; }
 
 /* o computador e o efeito de tela de tubo (CRT) por cima */
-.computador { position: relative; margin: 6px 0 0; }
+.computador { position: relative; margin: 0; }
 .computador img { display: block; width: 100%; height: auto; }
 .crt-tela {
   position: absolute; left: 17.97%; top: 9.79%; width: 52.55%; height: 53.64%;
@@ -108,9 +109,9 @@
 
 /* ---------- TELAS MENORES ---------- */
 @media (max-width: 1100px) {
-  .hero { grid-template-columns: 1fr; min-height: 0; padding-right: var(--margem); }
+  .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 0; padding-bottom: 0; padding-right: var(--margem); }
   .hero-texto { padding-top: 72px; max-width: none; }
-  .computador { max-width: 600px; margin: 40px auto 0; }
+  .computador { max-width: 600px; margin: 40px auto 40px; }
   .ex-info { width: 260px; }
 }
 @media (max-width: 800px) {

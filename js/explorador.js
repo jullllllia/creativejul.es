@@ -94,6 +94,23 @@
     aberta = alvo.getAttribute('data-caminho');
     desenhar();
   });
+  // Links que abrem uma pasta específica, ex.: index.html#pasta-code
+  // (usado nos botões OK das conquistas, na página Sobre)
+  var ATALHOS = {
+    'pasta-code': 'C:',
+    'pasta-identidade-e-marca': 'D:\\identidade-e-marca',
+    'pasta-social-media': 'D:\\social-media'
+  };
+  function abrirPeloEndereco() {
+    var alvo = ATALHOS[location.hash.slice(1)];
+    if (!alvo) return;
+    aberta = alvo;
+    desenhar();
+    var secao = document.getElementById('pastas');
+    if (secao) secao.scrollIntoView();
+  }
+
   document.addEventListener('idioma', desenhar);
-  document.addEventListener('DOMContentLoaded', desenhar);
+  document.addEventListener('DOMContentLoaded', function () { desenhar(); abrirPeloEndereco(); });
+  window.addEventListener('hashchange', abrirPeloEndereco);
 })();

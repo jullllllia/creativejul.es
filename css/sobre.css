@@ -101,7 +101,10 @@
 /* contato do Sobre: título + "me chama!" */
 .contato .titulo-linha { position: relative; display: flex; align-items: flex-start; flex-wrap: wrap; gap: 8px 24px; }
 .contato.simples .titulo { font-size: clamp(56px, 6.4vw, 92px); line-height: 0.9; }
-.me-chama { position: relative; margin: 0; font-size: 22px; transform: rotate(-8deg); align-self: center; }
+/* botão CONTATO com o "me chama!" escrito à mão do lado */
+.contato-acao { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 22px; }
+.contato-acao .ir-contato { margin-top: 0; }
+.me-chama { position: relative; margin: 0; font-size: 22px; transform: rotate(-8deg); }
 .me-chama svg { position: absolute; left: -18px; top: 30px; width: 136px; height: 15px; overflow: visible; }
 .contato.simples { align-items: flex-end; }
 
