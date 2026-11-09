@@ -37,12 +37,24 @@
 .ct-canal { display: flex; gap: 16px; align-items: center; padding: 16px; background: #EFE8D2; box-shadow: inset 0 0 0 1px #8C8468; }
 .ct-canal b { display: block; font-size: 18px; }
 .ct-canal span span { display: block; margin-top: 4px; font-size: 13px; color: #3E3A2A; }
-.ct-icone { flex-shrink: 0; min-width: 44px; padding: 0 6px; white-space: nowrap; width: auto; height: 44px; display: flex; align-items: center; justify-content: center; background: #2E3619; color: var(--ouro); font-family: var(--f-mono); font-weight: 700; font-size: 18px; }
+.ct-icone { flex-shrink: 0; min-width: 44px; gap: 6px; padding: 0 8px; white-space: nowrap; width: auto; height: 44px; display: flex; align-items: center; justify-content: center; background: #2E3619; color: var(--ouro); font-family: var(--f-mono); font-weight: 700; font-size: 18px; }
 .ct-msg { margin: 0; max-height: 220px; overflow: auto; padding: 12px; white-space: pre-wrap; word-break: break-word; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.6; color: #171C10; background: #FFFDF4; box-shadow: inset 1px 1px 0 #8C8468, inset 2px 2px 0 #4A4430, inset -1px -1px 0 #FFFBEA; }
-.ct-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
-.ct-acoes .b98 { min-height: 40px; padding: 0 22px; font-size: 14px; }
-.ct-outros { margin: 8px 0 0; font-size: 12px; color: #3E3A2A; }
-.ct-outros a { color: #171C10; }
+.ct-acoes { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 14px; margin-top: 16px; }
+.ct-acoes .ct-ir { min-height: 52px; padding: 0 22px; font-size: 14px; }
+/* botões quadrados com ícone em pixel art: todos com o mesmo fundo bege e a mesma textura das janelas */
+.ct-ico { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0; border: 0; background: none; cursor: pointer; text-decoration: none; color: #171C10; font: inherit; }
+.ct-ico[hidden] { display: none; }
+.ct-ico-q { position: relative; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: var(--bege);
+  box-shadow: inset 1px 1px 0 #FFFBEA, inset -1px -1px 0 #2C2A1E, inset 2px 2px 0 #E9E2C9, inset -2px -2px 0 #8C8468; transition: background .12s; }
+.ct-ico-q::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(20,20,15,0.08) 0.7px, transparent 1.1px), radial-gradient(rgba(255,250,232,0.12) 0.8px, transparent 1.2px);
+  background-size: 3px 3px, 4px 5px; mix-blend-mode: multiply; }
+.ct-ico-r { font-family: var(--f-janela); font-size: 11px; color: #3E3A2A; }
+/* hover / foco: o botão "afunda" e escurece um pouco */
+.ct-ico:hover .ct-ico-q, .ct-ico:focus-visible .ct-ico-q { background: #C3BA9A; box-shadow: inset 1px 1px 0 #2C2A1E, inset -1px -1px 0 #FFFBEA, inset 2px 2px 0 #8C8468; }
+.ct-ico:hover .ct-ico-r, .ct-ico:focus-visible .ct-ico-r { color: #171C10; text-decoration: underline; }
+.ct-ico:focus-visible { outline: none; }
+.ct-ico:active .ct-ico-q svg { transform: translate(1px, 1px); }
 .ct-obs { margin: 10px 0 0; font-size: 12px; color: #3E3A2A; }
 .ct-rodape { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #8C8468; box-shadow: 0 1px 0 #FFFBEA inset; }
 .ct-nav { display: flex; gap: 8px; }
@@ -63,6 +75,9 @@
   .ct-janela { width: calc(100% - 2 * var(--margem)); }
 }
 
-/* botão do WhatsApp em verde, para diferenciar do e-mail */
-.b98.ct-zap { background: #CFE0B4; }
-.b98.ct-zap:hover { background: #BFD49E; }
+.ct-icone-zap { display: inline-flex; }
+.ct-icone-zap[hidden] { display: none; }
+.ct-ir[hidden] { display: none; }
+.ct-icone { display: inline-flex; align-items: center; justify-content: center; }
+.ct-icone-txt { line-height: 1; }
+.ct-canal .ct-icone span { display: inline-flex; margin: 0; font-size: 18px; color: var(--ouro); }

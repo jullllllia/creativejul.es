@@ -144,3 +144,7 @@
   .sm-anel img { width: 60px; height: 60px; }
 }
 @media (prefers-reduced-motion: reduce) { .ed-folha, .sm-img, .entra { animation: none !important; } }
+
+/* link "Ver perfil completo" de cada perfil (mesmo estilo das redes do rodapé) */
+.sm-insta { align-self: flex-start; font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--papel); text-underline-offset: 6px; }
+.sm-insta[hidden] { display: none; }

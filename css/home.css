@@ -14,7 +14,7 @@
 .hero p { margin: 40px 0 0; max-width: 492px; font-size: 16px; line-height: 1.5; color: var(--papel-2); }
 .hero-acoes { display: flex; flex-wrap: wrap; gap: 20px 30px; align-items: center; margin-top: 56px; }
 .hero-acoes .link { font-size: 14px; text-underline-offset: 6px; }
-.hero-acoes .botao { min-height: 42px; padding: 0 18px; font-size: 15px; }
+.hero-acoes .botao { min-height: 42px; padding: 0 18px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }  /* caixa alta, igual aos outros botões */
 
 /* o computador e o efeito de tela de tubo (CRT) por cima */
 .computador { position: relative; margin: 0; }
@@ -151,3 +151,7 @@
   .projetos { padding-top: 56px; padding-bottom: 72px; }
   .barra-titulo { font-size: 12px; }
 }
+
+/* item "creativejul.es" no C: — este próprio site */
+.ex-aqui { margin-left: 6px; color: #5E6B33; font-weight: 700; }
+.ex-linha:hover .ex-aqui, .ex-linha:focus-visible .ex-aqui { color: inherit; }

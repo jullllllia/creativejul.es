@@ -24,8 +24,8 @@
   var PRAZOS = { pt: ['Sem pressa', 'Este mês', 'Urgente'], en: ['No rush', 'This month', 'Urgent'] };
   var CANAIS = {
     email: { icone: '@', link: null,
-      pt: { nome: 'E-mail', nomeZap: 'WhatsApp ou e-mail', porqueZap: 'Pra projetos, escolha o que for melhor pra você: o WhatsApp é mais rápido pra conversar e o e-mail é melhor pra mandar referências e briefing.', zap: 'Chamar no WhatsApp', porque: 'Pra projetos, o e-mail é o melhor: dá pra mandar referências e briefing, e eu respondo com calma e com orçamento.', acao: 'Enviar e-mail', obs: 'O botão abre o Gmail já com tudo preenchido. Se preferir, copie a mensagem e envie para ' + EMAIL + '.' },
-      en: { nome: 'Email', nomeZap: 'WhatsApp or email', porqueZap: 'For projects, pick what works best for you: WhatsApp is faster to chat, and email is better for sending references and a brief.', zap: 'Message on WhatsApp', porque: 'For projects, email is best: you can send references and a brief, and I reply calmly, with a quote.', acao: 'Send email', obs: 'The button opens Gmail with everything filled in. If you prefer, copy the message and send it to ' + EMAIL + '.' } },
+      pt: { nome: 'E-mail', nomeZap: 'WhatsApp ou e-mail', porqueZap: 'Pra projetos, escolha o que for melhor pra você: o WhatsApp é mais rápido pra conversar e o e-mail é melhor pra mandar referências e briefing.', zap: 'Chamar no WhatsApp', gmail: 'Enviar pelo Gmail', outlook: 'Enviar pelo Outlook', outra: 'Usa outra plataforma? Copie a mensagem e faça o contato direto.', porque: 'Pra projetos, o e-mail é o melhor: dá pra mandar referências e briefing, e eu respondo com calma e com orçamento.', acao: 'Enviar e-mail', obs: 'O botão abre o Gmail já com tudo preenchido. Se preferir, copie a mensagem e envie para ' + EMAIL + '.' },
+      en: { nome: 'Email', nomeZap: 'WhatsApp or email', porqueZap: 'For projects, pick what works best for you: WhatsApp is faster to chat, and email is better for sending references and a brief.', zap: 'Message on WhatsApp', gmail: 'Send with Gmail', outlook: 'Send with Outlook', outra: 'Using another platform? Copy the message and reach out directly.', porque: 'For projects, email is best: you can send references and a brief, and I reply calmly, with a quote.', acao: 'Send email', obs: 'The button opens Gmail with everything filled in. If you prefer, copy the message and send it to ' + EMAIL + '.' } },
     linkedin: { icone: 'in', link: 'https://www.linkedin.com/in/julliaht/',
       pt: { nome: 'LinkedIn', porque: 'Pra vagas e propostas, o LinkedIn é o melhor lugar: lá está meu histórico completo e eu respondo recrutadores por mensagem.', acao: 'Abrir meu LinkedIn', obs: 'Copie a mensagem e cole na conversa do LinkedIn.' },
       en: { nome: 'LinkedIn', porque: 'For openings and offers, LinkedIn is the best place: my full history is there and I answer recruiters by message.', acao: 'Open my LinkedIn', obs: 'Copy the message and paste it into the LinkedIn chat.' } },
@@ -34,10 +34,10 @@
       en: { nome: 'Discord', porque: 'For a casual chat, Discord is faster: join the server and ping me.', acao: 'Join the Discord', obs: 'Copy the message and send it in the channel or in my DMs.' } }
   };
   var T = {
-    pt: { etapa: 'Etapa {n} de 3', voltar: '< Voltar', avancar: 'Avançar >', recomecar: 'Recomeçar', copiar: 'Copiar mensagem', copiado: 'Copiado!', semNome: '(seu nome)',
+    pt: { etapa: 'Etapa {n} de 3', voltar: '< Voltar', avancar: 'Avançar >', recomecar: 'Recomeçar', copiar: 'Copiar', copiado: 'Copiado!', semNome: '(seu nome)',
       phNome: 'Como posso te chamar?', phMsg: 'O que você tem em mente? Marca, site, prazo, referências...',
       corpo: function (d) { return 'Oi, jules! Meu nome é ' + d.nome + '.\n\nEstou procurando: ' + d.servico + '.\nPrazo: ' + d.prazo.toLowerCase() + '.' + (d.msg ? '\n\n' + d.msg : '') + '\n\nVim pelo creativejul.es'; }, assunto: 'Assunto: ' },
-    en: { etapa: 'Step {n} of 3', voltar: '< Back', avancar: 'Next >', recomecar: 'Start over', copiar: 'Copy message', copiado: 'Copied!', semNome: '(your name)',
+    en: { etapa: 'Step {n} of 3', voltar: '< Back', avancar: 'Next >', recomecar: 'Start over', copiar: 'Copy', copiado: 'Copied!', semNome: '(your name)',
       phNome: 'What should I call you?', phMsg: 'What do you have in mind? Brand, website, timeline, references...',
       corpo: function (d) { return 'Hi, jules! My name is ' + d.nome + '.\n\nI’m looking for: ' + d.servico + '.\nTimeline: ' + d.prazo.toLowerCase() + '.' + (d.msg ? '\n\n' + d.msg : '') + '\n\nFound you at creativejul.es'; }, assunto: 'Subject: ' }
   };
@@ -80,32 +80,34 @@
       // etapa 3
       if (st.op !== null) {
         var c = CANAIS[OPCOES[st.op].canal], m = textoMensagem();
-        // projetos (e-mail) com WhatsApp configurado: mostra as duas opções
-        var temZap = OPCOES[st.op].canal === 'email';
-        $('.ct-icone').textContent = temZap ? '@ ✆' : c.icone;
-        $('.ct-canal-nome').textContent = temZap ? c[l].nomeZap : c[l].nome;
-        $('.ct-porque').textContent = temZap ? c[l].porqueZap : c[l].porque;
-        var zap = $('.ct-zap');
-        zap.hidden = !temZap;
-        if (temZap) {
-          zap.textContent = c[l].zap;
-          // no WhatsApp vai só a mensagem (sem a linha de "Assunto")
-          zap.href = 'https://wa.me/' + (window.JULES_WHATSAPP || '') + '?text=' + encodeURIComponent(m.corpo);
-        }
-        $('.ct-msg').textContent = m.completa;
-        var ir = $('.ct-ir');
-        ir.textContent = c[l].acao;
+        // projetos: WhatsApp + Gmail + Outlook (botões quadrados com ícone)
+        // vaga (LinkedIn) e "trocar uma ideia" (Discord): um botão com texto
+        var projeto = OPCOES[st.op].canal === 'email';
+        $('.ct-icone-zap').hidden = !projeto;
+        $('.ct-icone-txt').textContent = projeto ? '@' : c.icone;
+        $('.ct-canal-nome').textContent = projeto ? c[l].nomeZap : c[l].nome;
+        $('.ct-porque').textContent = projeto ? c[l].porqueZap : c[l].porque;
         var su = encodeURIComponent(m.assunto), bo = encodeURIComponent(m.corpo);
-        // e-mail: o botão principal abre o Gmail no navegador (funciona mesmo sem app de e-mail instalado)
-        ir.href = c.link || ('https://mail.google.com/mail/?view=cm&fs=1&to=' + EMAIL + '&su=' + su + '&body=' + bo);
-        ir.target = '_blank';
-        var outros = $('.ct-outros');
-        outros.hidden = !!c.link;
-        $('.ct-outlook').href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + EMAIL + '&subject=' + su + '&body=' + bo;
-        $('.ct-app').href = 'mailto:' + EMAIL + '?subject=' + su + '&body=' + bo;
-        $('.ct-obs').textContent = c[l].obs;
+        var botoes = {
+          '.ct-zap': ['https://wa.me/' + (window.JULES_WHATSAPP || '') + '?text=' + bo, c[l].zap],
+          '.ct-gmail': ['https://mail.google.com/mail/?view=cm&fs=1&to=' + EMAIL + '&su=' + su + '&body=' + bo, c[l].gmail],
+          '.ct-outlook': ['https://outlook.live.com/mail/0/deeplink/compose?to=' + EMAIL + '&subject=' + su + '&body=' + bo, c[l].outlook]
+        };
+        Object.keys(botoes).forEach(function (sel) {
+          var bt = $(sel);
+          bt.hidden = !projeto;
+          bt.href = botoes[sel][0];
+          bt.setAttribute('aria-label', botoes[sel][1]);
+          bt.title = botoes[sel][1];
+        });
+        var ir = $('.ct-ir');
+        ir.hidden = projeto;
+        if (!projeto) { ir.textContent = c[l].acao; ir.href = c.link; }
+        $('.ct-msg').textContent = m.completa;
+        $('.ct-obs').textContent = projeto ? c[l].outra : c[l].obs;
       }
-      $('.ct-copiar').textContent = st.copiado ? t.copiado : t.copiar;
+      $('.ct-copiar-txt').textContent = st.copiado ? t.copiado : t.copiar;
+      $('.ct-copiar').setAttribute('aria-label', t.copiar);
       // rodapé
       $('.ct-etapa-txt').textContent = t.etapa.replace('{n}', st.etapa);
       var voltar = $('.ct-voltar'), avancar = $('.ct-avancar');

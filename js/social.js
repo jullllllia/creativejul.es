@@ -45,6 +45,10 @@
       $('.sm-useg').textContent = seg;
       $$('.sm-user').forEach(function (u) { u.textContent = p.usuario; });
       $('.sm-avatar').src = p.capa;
+      // botão do Instagram: só aparece quando o perfil tem @ cadastrado
+      var insta = $('.sm-insta');
+      insta.hidden = !p.insta;
+      if (p.insta) { insta.href = 'https://www.instagram.com/' + p.insta + '/'; insta.title = '@' + p.insta; }
       foto.style.aspectRatio = '1 / ' + p.prop;
       stories.forEach(function (s, i) {
         if (i === c) { s.setAttribute('aria-current', 'true'); s.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
@@ -77,7 +81,15 @@
       if (dx > 40) setaAnt.click();
       x0 = null;
     });
+    // abrir um perfil direto pelo endereço, ex.: social-media.html#dorivalbar
+    function peloEndereco() {
+      var alvo = decodeURIComponent(location.hash.slice(1));
+      for (var i = 0; i < P.length; i++) if (P[i].usuario === alvo || P[i].insta === alvo) { c = i; f = 0; return true; }
+      return false;
+    }
+    window.addEventListener('hashchange', function () { if (peloEndereco()) desenhar(true); });
     document.addEventListener('idioma', function () { desenhar(false); });
+    peloEndereco();
     desenhar(false);
   });
 })();
