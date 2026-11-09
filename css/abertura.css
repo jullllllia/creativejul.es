@@ -33,7 +33,9 @@
 
 /* ---------- o computador ---------- */
 /* largura: o que couber na tela, mantendo a proporção da imagem (1400 × 1042) */
-.ab-pc { position: relative; width: min(1240px, 96vw, calc((100vh - 160px) * 1.3436)); transform-origin: 0 0; will-change: transform; }
+/* o centro do MONITOR fica a ~44% da largura da imagem (o mouse puxa a imagem pra direita),
+   então empurramos o computador 6% pra direita: assim o monitor fica alinhado com o botão de entrar */
+.ab-pc { --ab-w: min(1240px, 92vw, calc((100vh - 160px) * 1.3436)); position: relative; width: var(--ab-w); left: calc(var(--ab-w) * 0.061); transform-origin: 0 0; will-change: transform; }
 .ab-pc img { display: block; width: 100%; height: auto; }
 .ab-pc-img { filter: brightness(0.35); animation: abPcAcende 4.6s ease-out forwards; }
 @keyframes abPcAcende { to { filter: brightness(1); } }

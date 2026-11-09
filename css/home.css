@@ -155,3 +155,4 @@
 /* item "creativejul.es" no C: — este próprio site */
 .ex-aqui { margin-left: 6px; color: #5E6B33; font-weight: 700; }
 .ex-linha:hover .ex-aqui, .ex-linha:focus-visible .ex-aqui { color: inherit; }
+.como .linha .rot .par { color: var(--papel); }  /* parênteses em branco */
