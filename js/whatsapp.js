@@ -6,7 +6,7 @@
    Enquanto estiver vazio (''), os botões aparecem, mas o link abre o
    WhatsApp sem destinatário. Depois de preencher, abre direto a conversa.
    ===================================================================== */
-window.JULES_WHATSAPP = '';
+window.JULES_WHATSAPP = '5511914244871';
 
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
